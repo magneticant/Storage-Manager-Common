@@ -27,12 +27,11 @@ public class ReceiverJSON implements Receiver{
 	
 	@Override
 	public Object receiveObject() throws Exception {
-		Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-		JsonObject obj = gson.fromJson(in,JsonObject.class );
+		String obj = in.readLine();
 		System.out.println("Json object received correctly!");
 		System.out.println(obj);
 		
-		return obj.toString();
+		return obj;
 	}
 
 }
