@@ -27,7 +27,7 @@ public class ReceiverJSON implements Receiver{
 	
 	@Override
 	public Object receiveObject() throws Exception {
-		var gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 		JsonObject obj = gson.fromJson(in,JsonObject.class );
 		System.out.println("Json object received correctly!");
 		System.out.println(obj);
