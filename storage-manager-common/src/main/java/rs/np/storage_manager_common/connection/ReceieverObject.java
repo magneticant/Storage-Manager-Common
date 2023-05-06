@@ -3,15 +3,17 @@ package rs.np.storage_manager_common.connection;
 import java.io.*;
 import java.net.*;
 
+import rs.np.storage_manager_common.connection.abstraction.Receiver;
+
 /**
  *
  * @author Milan
  */
-public class Receiever {
+public class ReceieverObject implements Receiver{
     private Socket socket; 
     private ObjectInputStream in;
     
-    public Receiever(Socket socket) {
+    public ReceieverObject(Socket socket) {
         try {
             this.socket = socket;
             in = new ObjectInputStream(socket.getInputStream());

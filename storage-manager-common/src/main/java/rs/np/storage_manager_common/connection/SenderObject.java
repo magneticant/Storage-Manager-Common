@@ -3,15 +3,17 @@ package rs.np.storage_manager_common.connection;
 import java.io.*;
 import java.net.*;
 
+import rs.np.storage_manager_common.connection.abstraction.Sender;
+
 /**
  *
  * @author Milan
  */
-public class Sender {
+public class SenderObject implements Sender{
     private Socket socket;
     private ObjectOutputStream out;
 
-    public Sender(Socket socket) {
+    public SenderObject(Socket socket) {
         this.socket = socket;
         try {
             out = new ObjectOutputStream(socket.getOutputStream());
