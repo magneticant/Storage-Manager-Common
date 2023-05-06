@@ -13,7 +13,7 @@ public class SenderJSON implements Sender{
 	private Socket socket;
 	private PrintWriter out;
 	
-	public SenderJSON() {
+	public SenderJSON(Socket socket) {
 		this.socket = socket;
 		try {
 			out = new PrintWriter(socket.getOutputStream(),true);
