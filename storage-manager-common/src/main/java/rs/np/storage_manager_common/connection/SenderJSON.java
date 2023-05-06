@@ -24,9 +24,10 @@ public class SenderJSON implements Sender{
 	}
 	
 	public void sendObject(Object obj) {
-		Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+		Gson gson = new Gson();
 		out.println(gson.toJson(obj));
 		System.out.println("JSON sent!");
-		System.out.println("JSON: " + gson.toJson(obj));
+		System.out.println("JSON: " + new GsonBuilder().serializeNulls().
+				setPrettyPrinting().create().toJson(obj));
 	}
 }
