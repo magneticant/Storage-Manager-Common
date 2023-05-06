@@ -32,7 +32,7 @@ public class ReceiverJSON implements Receiver{
 		System.out.println("Json object received correctly!");
 		System.out.println(obj);
 		
-		return obj;
+		return obj.toString();
 	}
 
 }
