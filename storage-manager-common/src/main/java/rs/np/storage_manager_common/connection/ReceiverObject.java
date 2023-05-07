@@ -9,11 +9,11 @@ import rs.np.storage_manager_common.connection.abstraction.Receiver;
  *
  * @author Milan
  */
-public class ReceieverObject implements Receiver{
+public class ReceiverObject implements Receiver{
     private Socket socket; 
     private ObjectInputStream in;
     
-    public ReceieverObject(Socket socket) {
+    public ReceiverObject(Socket socket) {
         try {
             this.socket = socket;
             in = new ObjectInputStream(socket.getInputStream());
