@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import rs.np.storage_manager_common.domain.utility.JSONPurifier;
+
 
 public class ReceiverJSON {
 	private Socket socket;
@@ -30,15 +32,11 @@ public class ReceiverJSON {
 	public String receiveObject() throws Exception {
 		String obj = in.readLine();
 		System.out.println("JSON received!");
-		System.out.println(new GsonBuilder().serializeNulls()
-				.setPrettyPrinting().create().toJson(obj));
+		String jsonFixed = JSONPurifier.removeQuotesAndUnescape(obj);
+		System.out.println(jsonFixed);
 		
-		return removeQuotesAndUnescape(obj);
+		return jsonFixed;
 	}
 
-	private String removeQuotesAndUnescape(String uncleanJson) {
-        String noQuotes = uncleanJson.replaceAll("^\"|\"$", "");
 
-        return StringEscapeUtils.unescapeJava(noQuotes);
-    }
 }

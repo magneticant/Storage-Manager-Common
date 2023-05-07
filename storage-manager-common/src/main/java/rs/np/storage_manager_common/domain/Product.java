@@ -194,4 +194,10 @@ public class Product implements DomainClass {
                 BigDecimal.valueOf(rs.getDouble("cena"))
         );
     }
+
+	@Override
+	public String toString() {
+		return productName;
+	}
+    
 }
