@@ -3,6 +3,8 @@ package rs.np.storage_manager_common.connection;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  *
  * @author Milan
@@ -10,16 +12,16 @@ import java.io.Serializable;
 public class Response implements Serializable{
     private Object response;
 //    private Exception ex;
+    @SerializedName(value = "exception_content")
     private String exMessage;
-    private StackTraceElement[] elements;
+//    private StackTraceElement[] elements;
     
     public Response() {
     }
 
-    public Response(Object response, String exMessage, StackTraceElement[] elements) {
+    public Response(Object response, String exMessage) {
         this.response = response;
         this.exMessage = exMessage;
-        this.elements = elements;
     }
 
     public Object getResponse() {
@@ -38,13 +40,4 @@ public class Response implements Serializable{
 		this.exMessage = exMessage;
 	}
 
-	public StackTraceElement[] getElements() {
-		return elements;
-	}
-
-	public void setElements(StackTraceElement[] elements) {
-		this.elements = elements;
-	}
-
-    
 }
