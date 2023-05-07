@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -24,9 +26,15 @@ public class SenderJSON {
 	
 	public void sendObject(Object obj) {
 		Gson gson = new Gson();
-		out.println(gson.toJson(obj));
+		out.println(removeQuotesAndUnescape(gson.toJson(obj)));
 		System.out.println("JSON sent!");
-		System.out.println("JSON: " + new GsonBuilder().serializeNulls().
+		System.out.println(new GsonBuilder().serializeNulls().
 				setPrettyPrinting().create().toJson(obj));
 	}
+	
+	private String removeQuotesAndUnescape(String uncleanJson) {
+        String noQuotes = uncleanJson.replaceAll("^\"|\"$", "");
+
+        return StringEscapeUtils.unescapeJava(noQuotes);
+    }
 }

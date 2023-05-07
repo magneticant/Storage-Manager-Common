@@ -27,8 +27,9 @@ public class ReceiverJSON {
 	
 	public String receiveObject() throws Exception {
 		String obj = in.readLine();
-		System.out.println("Json object received correctly!");
-		System.out.println(obj);
+		System.out.println("JSON received!");
+		System.out.println(new GsonBuilder().serializeNulls()
+				.setPrettyPrinting().create().toJson(obj));
 		
 		return obj;
 	}
