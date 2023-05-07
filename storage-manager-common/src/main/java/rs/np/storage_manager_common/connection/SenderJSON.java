@@ -9,6 +9,12 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import rs.np.storage_manager_common.domain.Report;
+import rs.np.storage_manager_common.domain.ReportItem;
+import rs.np.storage_manager_common.domain.abstraction.AbstractDocument;
+import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
+import rs.np.storage_manager_common.domain.utility.GraphAdapterBuilder;
+
 
 public class SenderJSON {
 	private Socket socket;
@@ -25,7 +31,12 @@ public class SenderJSON {
 	}
 	
 	public void sendObject(Object obj) {
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd");
+        new GraphAdapterBuilder().addType(Report.class).addType(ReportItem.class)
+        .addType(AbstractDocument.class).addType(AbstractDocumentItem.class)
+        .registerOn(gsonBuilder);
+        Gson gson = gsonBuilder.create();
+        
 		out.println(gson.toJson(obj));
 		System.out.println("JSON sent!");
 		System.out.println(new GsonBuilder().serializeNulls().
