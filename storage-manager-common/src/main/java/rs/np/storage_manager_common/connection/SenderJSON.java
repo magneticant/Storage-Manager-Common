@@ -26,15 +26,11 @@ public class SenderJSON {
 	
 	public void sendObject(Object obj) {
 		Gson gson = new Gson();
-		out.println(removeQuotesAndUnescape(gson.toJson(obj)));
+		out.println(gson.toJson(obj));
 		System.out.println("JSON sent!");
 		System.out.println(new GsonBuilder().serializeNulls().
 				setPrettyPrinting().create().toJson(obj));
 	}
 	
-	private String removeQuotesAndUnescape(String uncleanJson) {
-        String noQuotes = uncleanJson.replaceAll("^\"|\"$", "");
-
-        return StringEscapeUtils.unescapeJava(noQuotes);
-    }
+	
 }

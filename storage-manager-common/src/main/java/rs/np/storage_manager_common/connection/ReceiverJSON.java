@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -31,7 +33,12 @@ public class ReceiverJSON {
 		System.out.println(new GsonBuilder().serializeNulls()
 				.setPrettyPrinting().create().toJson(obj));
 		
-		return obj;
+		return removeQuotesAndUnescape(obj);
 	}
 
+	private String removeQuotesAndUnescape(String uncleanJson) {
+        String noQuotes = uncleanJson.replaceAll("^\"|\"$", "");
+
+        return StringEscapeUtils.unescapeJava(noQuotes);
+    }
 }
