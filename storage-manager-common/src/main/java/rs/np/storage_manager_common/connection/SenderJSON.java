@@ -7,9 +7,8 @@ import java.net.Socket;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import rs.np.storage_manager_common.connection.abstraction.Sender;
 
-public class SenderJSON implements Sender{
+public class SenderJSON {
 	private Socket socket;
 	private PrintWriter out;
 	

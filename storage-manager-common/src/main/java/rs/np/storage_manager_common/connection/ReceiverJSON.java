@@ -9,9 +9,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
-import rs.np.storage_manager_common.connection.abstraction.Receiver;
 
-public class ReceiverJSON implements Receiver{
+public class ReceiverJSON {
 	private Socket socket;
 	private BufferedReader in;
 	
@@ -25,8 +24,8 @@ public class ReceiverJSON implements Receiver{
 		}
 	}
 	
-	@Override
-	public Object receiveObject() throws Exception {
+	
+	public String receiveObject() throws Exception {
 		String obj = in.readLine();
 		System.out.println("Json object received correctly!");
 		System.out.println(obj);

@@ -3,13 +3,12 @@ package rs.np.storage_manager_common.connection;
 import java.io.*;
 import java.net.*;
 
-import rs.np.storage_manager_common.connection.abstraction.Receiver;
 
 /**
  *
  * @author Milan
  */
-public class ReceiverObject implements Receiver{
+public class ReceiverObject {
     private Socket socket; 
     private ObjectInputStream in;
     

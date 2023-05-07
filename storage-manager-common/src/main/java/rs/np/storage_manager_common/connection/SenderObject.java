@@ -3,13 +3,12 @@ package rs.np.storage_manager_common.connection;
 import java.io.*;
 import java.net.*;
 
-import rs.np.storage_manager_common.connection.abstraction.Sender;
 
 /**
  *
  * @author Milan
  */
-public class SenderObject implements Sender{
+public class SenderObject {
     private Socket socket;
     private ObjectOutputStream out;
 
