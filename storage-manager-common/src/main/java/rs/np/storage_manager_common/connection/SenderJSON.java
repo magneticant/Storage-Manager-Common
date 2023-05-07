@@ -34,6 +34,7 @@ public class SenderJSON {
 		GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd");
         new GraphAdapterBuilder().addType(Report.class).addType(ReportItem.class)
         .addType(AbstractDocument.class).addType(AbstractDocumentItem.class)
+        .addType(Request.class)
         .registerOn(gsonBuilder);
         Gson gson = gsonBuilder.create();
         
