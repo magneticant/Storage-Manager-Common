@@ -9,6 +9,8 @@ import java.util.Objects;
 /**
  *
  * @author Milan
+ * 
+ * @since 1.0.0
  */
 public class Product implements DomainClass {
     private Integer ID;
