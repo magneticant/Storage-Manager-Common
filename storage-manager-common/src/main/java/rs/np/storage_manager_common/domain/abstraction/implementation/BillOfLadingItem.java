@@ -37,6 +37,12 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 
@@ -47,6 +53,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setDocument(AbstractDocument bill) {
+    	if(bill == null) {
+    		throw new NullPointerException("Bill must not be null.");
+    	}
         this.document = bill;
     }
 
@@ -57,6 +66,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setSecondParticipant(DomainClass buyer) {
+    	if(buyer == null) {
+    		throw new NullPointerException("Buyer must not be null.");
+    	}
         this.buyer = (Buyer)buyer;
     }
 
@@ -67,6 +79,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setFirm(Firm firm) {
+    	if(firm == null) {
+    		throw new NullPointerException("Firm must not be null.");
+    	}
         this.firm = firm;
     }
 
@@ -77,6 +92,12 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setAmount(Integer issuedAmount) {
+    	if(issuedAmount == null) {
+    		throw new NullPointerException("Issued amount must not be null.");
+    	}
+    	if(issuedAmount < 0) {
+    		throw new IllegalArgumentException("Issued amount must not be negative.");
+    	}
         this.amount = issuedAmount;
     }
 
@@ -87,6 +108,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setProduct(Product product) {
+    	if(product == null) {
+    		throw new NullPointerException("Product must not be null.");
+    	}
         this.product = product;
     }
 
@@ -96,6 +120,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
     }
 
     public void setMode(WhereClauseMode mode) {
+    	if(mode == null) {
+    		throw new NullPointerException("Mode must be set with this method.");
+    	}
         this.mode = mode;
     }
 

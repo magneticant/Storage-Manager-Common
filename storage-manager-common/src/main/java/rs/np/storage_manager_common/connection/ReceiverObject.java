@@ -3,6 +3,8 @@ package rs.np.storage_manager_common.connection;
 import java.io.*;
 import java.net.*;
 
+import rs.np.storage_manager_common.domain.utility.JSONPurifier;
+
 
 /**
  *
@@ -26,7 +28,7 @@ public class ReceiverObject {
         try {
             Object obj = in.readObject();
             System.out.println("Object received correctly!");
-            System.out.println("Object: " + obj);
+            System.out.println("Object: " + obj.toString());
             return obj;
         } catch (IOException ex) {
             throw new Exception("Error receiving message " + ex.getMessage());

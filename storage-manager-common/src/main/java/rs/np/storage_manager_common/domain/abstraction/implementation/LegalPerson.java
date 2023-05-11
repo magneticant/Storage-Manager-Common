@@ -8,6 +8,7 @@ import rs.np.storage_manager_common.domain.utility.DateParser;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -35,6 +36,9 @@ public class LegalPerson extends Buyer {
     }
 
     public void setBuyer(Buyer buyer) {
+    	if(buyer == null) {
+    		throw new NullPointerException("Buyer must not be null.");
+    	}
         this.buyer = buyer;
     }
 
@@ -43,6 +47,13 @@ public class LegalPerson extends Buyer {
     }
 
     public void setFirmName(String firmName) {
+    	if(firmName == null || firmName.isBlank()) {
+    		throw new NullPointerException("Firm name must not be null.");
+    	}
+    	if(firmName.length() < 2 || firmName.length() > 30) {
+    		throw new IllegalArgumentException("Firm name must not be "
+    				+ "less than 2 characters or longer than 30 characters.");
+    	}
         this.firmName = firmName;
     }
 
@@ -51,6 +62,12 @@ public class LegalPerson extends Buyer {
     }
 
     public void setFoundingDate(Date foundingDate) {
+    	if(foundingDate == null) {
+    		throw new NullPointerException("Founding date for this firm must not be set to null.");
+    	}
+    	if(foundingDate.after(new Date())) {
+    		throw new DateTimeException("Founding date must not be in the future.");
+    	}
         this.foundingDate = foundingDate;
     }
 
@@ -61,6 +78,12 @@ public class LegalPerson extends Buyer {
 
     @Override
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 

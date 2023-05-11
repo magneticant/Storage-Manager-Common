@@ -24,6 +24,12 @@ public class Buyer implements DomainClass, Serializable, SecondParticipant {
     }
 
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 
@@ -32,6 +38,14 @@ public class Buyer implements DomainClass, Serializable, SecondParticipant {
     }
 
     public void setBuyerAddress(String buyerAddress) {
+    	if(buyerAddress == null || buyerAddress.isBlank()) {
+    		throw new NullPointerException("Buyer address cannot be set to null or blank.");
+    	}
+    	if(buyerAddress.length() < 5 
+    			|| buyerAddress.length() > 50) {
+    		throw new IllegalArgumentException("Buyer address cannot be set to "
+    				+ "a length less than 5 or greater than 50");
+    	}
         this.buyerAddress = buyerAddress;
     }
 
@@ -40,6 +54,9 @@ public class Buyer implements DomainClass, Serializable, SecondParticipant {
     }
 
     public void setMode(WhereClauseMode mode) {
+    	if(mode == null) {
+    		throw new NullPointerException("Mode must be set with this method.");
+    	}
         this.mode = mode;
     }
 

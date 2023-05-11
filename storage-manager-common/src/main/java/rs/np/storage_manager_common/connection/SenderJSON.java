@@ -13,7 +13,6 @@ import rs.np.storage_manager_common.domain.Report;
 import rs.np.storage_manager_common.domain.ReportItem;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocument;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
-import rs.np.storage_manager_common.domain.utility.GraphAdapterBuilder;
 
 
 public class SenderJSON {
@@ -31,11 +30,8 @@ public class SenderJSON {
 	}
 	
 	public void sendObject(Object obj) {
-		GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd");
-        new GraphAdapterBuilder().addType(Report.class).addType(ReportItem.class)
-        .addType(AbstractDocument.class).addType(AbstractDocumentItem.class)
-        .addType(Request.class)
-        .registerOn(gsonBuilder);
+		GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls()
+				.setDateFormat("yyyy-MM-dd");
         Gson gson = gsonBuilder.create();
         
 		out.println(gson.toJson(obj));

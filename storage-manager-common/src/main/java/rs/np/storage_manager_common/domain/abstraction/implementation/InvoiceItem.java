@@ -36,6 +36,12 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
 
     @Override
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 
@@ -46,6 +52,9 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
 
     @Override
     public void setDocument(AbstractDocument invoice) {
+    	if(invoice == null) {
+    		throw new NullPointerException("Invoice must not be set to null.");
+    	}
         this.document = invoice;
     }
 
@@ -56,6 +65,9 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
 
     @Override
     public void setFirm(Firm firm) {
+    	if(firm == null) {
+    		throw new NullPointerException("Firm must not be set to null.");
+    	}
         this.firm = firm;
     }
 
@@ -64,6 +76,9 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
     }
 
     public void setPartner(Partner partner) {
+    	if(partner == null) {
+    		throw new NullPointerException("Partner must not be set to null.");
+    	}
         this.partner = partner;
     }
 
@@ -74,6 +89,12 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
 
     @Override
     public void setAmount(Integer amountAdded) {
+    	if(amountAdded == null) {
+    		throw new NullPointerException("Amount added must not be null.");
+    	}
+    	if(amountAdded < 0) {
+    		throw new IllegalArgumentException("Amount added is always positive.");
+    	}
         this.amount = amountAdded;
     }
 
@@ -193,6 +214,9 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
 
     @Override
     public void setSecondParticipant(DomainClass participant) {
+    	if(participant == null) {
+    		throw new NullPointerException("Participant must not be null.");
+    	}
         partner = (Partner)participant;
     }
 

@@ -38,6 +38,12 @@ public class Product implements DomainClass {
     }
 
     public void setID(Integer productID) {
+    	if(productID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(productID < 0 || productID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = productID;
     }
 
@@ -46,6 +52,12 @@ public class Product implements DomainClass {
     }
 
     public void setProductName(String productName) {
+    	if(productName == null || productName.isBlank()) {
+    		throw new NullPointerException("Product name cannot be left blank.");
+    	}
+    	if(productName.length() <2 || productName.length()>30) {
+    		throw new IllegalArgumentException("Product name cannot be less than 2 or longer than 30");
+    	}
         this.productName = productName;
     }
 
@@ -54,6 +66,12 @@ public class Product implements DomainClass {
     }
 
     public void setWeight(Double weight) {
+    	if(weight == null) {
+    		throw new NullPointerException("Weight cannot be null.");
+    	}
+    	if(weight < 0) {
+    		throw new IllegalArgumentException("Weigth cannot be negative");
+    	}
         this.weight = weight;
     }
 
@@ -62,6 +80,10 @@ public class Product implements DomainClass {
     }
 
     public void setFragile(Boolean fragile) {
+    	if(fragile == null) {
+    		throw new NullPointerException("Fragile is a boolean value"
+    				+ " and as such can only be true or false.");
+    	}
         this.fragile = fragile;
     }
 
@@ -70,6 +92,12 @@ public class Product implements DomainClass {
     }
 
     public void setAmount(Integer amount) {
+    	if(amount == null) {
+    		throw new NullPointerException("Stock cannot be null.");
+    	}
+    	if(amount < 0) {
+    		throw new IllegalArgumentException("Stocks of value less than 0 are not allowed.");
+    	}
         this.amount = amount;
     }
 
@@ -78,6 +106,9 @@ public class Product implements DomainClass {
     }
 
     public void setType(ProductType type) {
+    	if(type == null) {
+    		throw new NullPointerException("Product type must be set with this method.");
+    	}
         this.type = type;
     }
 
@@ -86,6 +117,12 @@ public class Product implements DomainClass {
     }
 
     public void setPrice(BigDecimal price) {
+    	if(price == null) {
+    		throw new NullPointerException("Price cannot be undefined.");
+    	}
+    	if(price.intValue() < 0) {
+    		throw new IllegalArgumentException("Price is never negative.");
+    	}
         this.price = price;
     }
 
@@ -94,6 +131,9 @@ public class Product implements DomainClass {
     }
 
     public void setMode(WhereClauseMode mode) {
+    	if(mode == null) {
+    		throw new NullPointerException("Mode must be set with this method.");
+    	}
         this.mode = mode;
     }
 

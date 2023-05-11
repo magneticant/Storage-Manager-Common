@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -14,7 +15,8 @@ import java.util.Objects;
  */
 public class ReportItem implements DomainClass{
     private Integer ID;
-    private Report report;
+//    private Report report;
+    private Date reportID;
     private Double productCapacity;
     private Product product;
     private Integer totalAvailableCapacity = 200;
@@ -23,9 +25,10 @@ public class ReportItem implements DomainClass{
     public ReportItem() {
     }
 
-    public ReportItem(Integer ID, Report report, Double productCapacity, Product product) {
+    public ReportItem(Integer ID, Date reportID, Double productCapacity, Product product) {
         this.ID = ID;
-        this.report = report;
+//        this.report = report;
+        this.reportID = reportID;
         this.productCapacity = productCapacity;
         this.product = product;
     }
@@ -35,15 +38,27 @@ public class ReportItem implements DomainClass{
     }
 
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 
-    public Report getReport() {
-        return report;
+    public Date getReportID() {
+        return reportID;
     }
 
-    public void setReport(Report report) {
-        this.report = report;
+    public void setReportID(Date reportID) {
+    	if(reportID == null) {
+    		throw new NullPointerException("Date cannot be set to null.");
+    	}
+    	if(reportID.after(new Date())) {
+    		throw new IllegalArgumentException("Report date cannot be set to a future date.");
+    	}
+        this.reportID = reportID;
     }
 
     public Double getProductCapacity() {
@@ -51,6 +66,12 @@ public class ReportItem implements DomainClass{
     }
 
     public void setProductCapacity(Double productCapacity) {
+    	if(productCapacity == null) {
+    		throw new NullPointerException("Product capacity cannot be null.");
+    	}
+    	if(productCapacity < 0 || productCapacity > 100) {
+    		throw new IllegalArgumentException("Product capacity can only be set between 0 and 100.");
+    	}
         this.productCapacity = productCapacity;
     }
 
@@ -59,6 +80,9 @@ public class ReportItem implements DomainClass{
     }
 
     public void setProduct(Product product) {
+    	if(product == null) {
+    		throw new NullPointerException("You may not set product as null.");
+    	}
         this.product = product;
     }
 
@@ -67,58 +91,51 @@ public class ReportItem implements DomainClass{
     }
 
     public void setTotalAvailableCapacity(Integer totalAvailableCapacity) {
+    	if(totalAvailableCapacity == null) {
+    		throw new NullPointerException("Product capacity cannot be null.");
+    	}
+    	if(totalAvailableCapacity < 0 
+    			|| totalAvailableCapacity > 100) {
+    		throw new IllegalArgumentException("Product capacity can only be set between 0 and 100.");
+    	}
         this.totalAvailableCapacity = totalAvailableCapacity;
     }
 
     public void setMode(WhereClauseMode mode) {
+    	if(mode == null) {
+    		throw new NullPointerException("Mode must be set with this method.");
+    	}
         this.mode = mode;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.ID);
-        hash = 53 * hash + Objects.hashCode(this.report);
-        hash = 53 * hash + Objects.hashCode(this.productCapacity);
-        hash = 53 * hash + Objects.hashCode(this.product);
-        hash = 53 * hash + Objects.hashCode(this.totalAvailableCapacity);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ReportItem other = (ReportItem) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.report, other.report)) {
-            return false;
-        }
-        if (!Objects.equals(this.productCapacity, other.productCapacity)) {
-            return false;
-        }
-        if (!Objects.equals(this.product, other.product)) {
-            return false;
-        }
-        return Objects.equals(this.totalAvailableCapacity, other.totalAvailableCapacity);
-    }
     
-   
     @Override
-    public String toString() {
-        return "ReportItem{" + "ID=" + ID + ", report=" + report + ", productCapacity=" + productCapacity + ", product=" + product + ", totalAvailableCapacity=" + totalAvailableCapacity + '}';
-    }
+	public int hashCode() {
+		return Objects.hash(ID, mode, product, productCapacity, reportID, totalAvailableCapacity);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ReportItem other = (ReportItem) obj;
+		return Objects.equals(ID, other.ID) && mode == other.mode && Objects.equals(product, other.product)
+				&& Objects.equals(productCapacity, other.productCapacity) && Objects.equals(reportID, other.reportID)
+				&& Objects.equals(totalAvailableCapacity, other.totalAvailableCapacity);
+	}
+
+	
 
     @Override
+	public String toString() {
+		return "ReportItem [ID=" + ID + ", reportID=" + reportID + ", productCapacity=" + productCapacity + ", product="
+				+ product + ", totalAvailableCapacity=" + totalAvailableCapacity + ", mode=" + mode + "]";
+	}
+
+	@Override
     public String getTableName() {
         return "stavkaizvestaja";
     }
@@ -131,7 +148,7 @@ public class ReportItem implements DomainClass{
     @Override
     public String getValues() {
         return "(kapacitetArt = " + productCapacity + ", sifraStavke = " +
-                ID + ", datumIzvestaja = " + report == null? null : report.getReportDate() +
+                ID + ", datumIzvestaja = " + reportID +
                 ", sifraArtikla = " + product == null? null : product.getID() + ", ukupanKapDostupno = " +
                 totalAvailableCapacity + ")";
     }
@@ -147,10 +164,10 @@ public class ReportItem implements DomainClass{
     @Override
     public String getInsertValues() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println("REPORT: " + report);
+        System.out.println("REPORT: " + reportID);
         System.out.println("PRODUCTCAPACITY: " + productCapacity);
         System.out.println("PRODUCTID:" + product.getID());
-        return "('" + format.format(report.getReportDate()) + "', " +
+        return "('" + format.format(reportID) + "', " +
                 Math.round(productCapacity * 100.0) / 100.0 + ", " + product.getID() + 
                 ", " + totalAvailableCapacity + ")";
                  
@@ -177,16 +194,17 @@ public class ReportItem implements DomainClass{
 
     @Override
     public DomainClass selectObject(ResultSet rs) throws SQLException {
-        Report report = new Report();
-        report.setReportDate(
-                DateParser.sqlDateToUtilDate(
-                    rs.getDate("datumIzvestaja"))
-        );
+//        Report report = new Report();
+//        report.setReportDate(
+//                DateParser.sqlDateToUtilDate(
+//                    rs.getDate("datumIzvestaja"))
+//        );
         Product prod = new Product();
         prod.setID(rs.getInt("sifraArtikla"));
         return new ReportItem(
                 rs.getInt("sifraStavke"),
-                report,
+                DateParser.sqlDateToUtilDate(
+                        rs.getDate("datumIzvestaja")),
                 rs.getDouble("ukupanKapDostupno"),
                 prod
                 );

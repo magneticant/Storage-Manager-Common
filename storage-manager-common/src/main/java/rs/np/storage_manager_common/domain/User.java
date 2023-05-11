@@ -33,6 +33,12 @@ public class User implements DomainClass{
     }
 
     public void setID(Integer id) {
+    	if(id == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(id < 0 || id > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = id;
     }
 
@@ -41,6 +47,14 @@ public class User implements DomainClass{
     }
 
     public void setName(String name) {
+    	if(name == null || name.isBlank()) {
+    		throw new NullPointerException("Name cannot be set to null.");
+    	}
+    	if(name.length() < 2 || name.length() > 30) {
+    		throw new IllegalArgumentException("Name cannot be set "
+    				+ "to less than 2 characters or more than "
+    				+ "30 characters.");
+    	}
         this.name = name;
     }
 
@@ -57,6 +71,14 @@ public class User implements DomainClass{
     }
 
     public void setUsername(String username) {
+    	if(username == null || username.isBlank()) {
+    		throw new NullPointerException("Name cannot be set to null.");
+    	}
+    	if(username.length() < 2 || username.length() > 30) {
+    		throw new IllegalArgumentException("Name cannot be set "
+    				+ "to less than 2 characters or more than "
+    				+ "30 characters.");
+    	}
         this.username = username;
     }
 
@@ -65,6 +87,14 @@ public class User implements DomainClass{
     }
 
     public void setPassword(String password) {
+    	if(password == null || password.isBlank()) {
+    		throw new NullPointerException("Name cannot be set to null.");
+    	}
+    	if(password.length() < 2 || password.length() > 30) {
+    		throw new IllegalArgumentException("Name cannot be set "
+    				+ "to less than 2 characters or more than "
+    				+ "30 characters.");
+    	}
         this.password = password;
     }
 

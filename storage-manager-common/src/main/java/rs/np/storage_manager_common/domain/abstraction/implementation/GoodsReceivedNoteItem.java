@@ -32,6 +32,12 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 
@@ -42,6 +48,9 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setDocument(AbstractDocument note) {
+    	if(note == null) {
+    		throw new NullPointerException("Note must not be null.");
+    	}
         this.document = note;
     }
 
@@ -52,6 +61,9 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setFirm(Firm firm) {
+    	if(firm == null) {
+    		throw new NullPointerException("Firm must not be null.");
+    	}
         this.firm = firm;
     }
 
@@ -62,6 +74,9 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setSecondParticipant(DomainClass partner) {
+    	if(partner == null) {
+    		throw new NullPointerException("Partner must not be null.");
+    	}
         this.partner = (Partner)partner;
     }
 
@@ -72,6 +87,12 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setAmount(Integer amountAdded) {
+    	if(amountAdded == null) {
+    		throw new NullPointerException("Amount added must not be null.");
+    	}
+    	if(amountAdded < 0) {
+    		throw new IllegalArgumentException("Amount added is always positive.");
+    	}
         this.amount = amountAdded;
     }
 
@@ -82,6 +103,9 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setProduct(Product product) {
+    	if(product == null) {
+    		throw new NullPointerException("Product must not be null.");
+    	}
         this.product = product;
     }
 

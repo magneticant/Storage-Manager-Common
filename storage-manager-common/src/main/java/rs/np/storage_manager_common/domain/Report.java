@@ -39,6 +39,12 @@ public class Report implements DomainClass{
     }
 
     public void setReportDate(Date reportDate) {
+    	if(reportDate == null) {
+    		throw new NullPointerException("Date cannot be set to null.");
+    	}
+    	if(reportDate.after(new Date())) {
+    		throw new IllegalArgumentException("Report date cannot be set to a future date.");
+    	}
         this.reportDate = reportDate;
     }
 
@@ -47,6 +53,9 @@ public class Report implements DomainClass{
     }
 
     public void setTotalCapacity(double totalCapacity) {
+    	if(totalCapacity < 0 || totalCapacity > 100) {
+    		throw new IllegalArgumentException("Total capacity is a value between 0 and 100.");
+    	}
         this.totalCapacity = totalCapacity;
     }
 
@@ -55,14 +64,17 @@ public class Report implements DomainClass{
     }
 
     public void setReportItems(List<ReportItem> reportItems) {
+    	if(reportItems == null) {
+    		throw new NullPointerException("You may only set non null "
+    				+ "values for report items.");
+    	}
         this.reportItems = reportItems;
     }
 
-    public void setTotalCapacity(Double totalCapacity) {
-        this.totalCapacity = totalCapacity;
-    }
-    
     public void setMode(WhereClauseMode mode) {
+    	if(mode == null) {
+    		throw new NullPointerException("Mode must be set with this method.");
+    	}
         this.mode = mode;
     }
     

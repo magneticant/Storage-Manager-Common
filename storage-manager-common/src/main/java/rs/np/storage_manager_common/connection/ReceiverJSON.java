@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
+import rs.np.storage_manager_common.domain.DomainClass;
 import rs.np.storage_manager_common.domain.utility.JSONPurifier;
 
 
@@ -29,13 +30,14 @@ public class ReceiverJSON {
 	}
 	
 	
-	public String receiveObject() throws Exception {
-		String obj = in.readLine();
+	public<T> T receiveObject(Class<T> obj) throws Exception {
+		String jsonRequest = in.readLine();
 		System.out.println("JSON received!");
-		String jsonFixed = JSONPurifier.removeQuotesAndUnescape(obj);
-		System.out.println(jsonFixed);
+		System.out.println(jsonRequest);
 		
-		return jsonFixed;
+		Gson gson = new Gson();
+		
+		return gson.fromJson(jsonRequest, obj);
 	}
 
 

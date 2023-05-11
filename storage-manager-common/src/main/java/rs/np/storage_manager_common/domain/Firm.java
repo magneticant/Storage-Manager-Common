@@ -1,7 +1,6 @@
 //package domain;
 package rs.np.storage_manager_common.domain;
 
-import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
@@ -30,6 +29,12 @@ public class Firm implements DomainClass{
     }
 
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 
@@ -38,6 +43,13 @@ public class Firm implements DomainClass{
     }
 
     public void setFirmName(String firmName) {
+    	if(firmName == null || firmName.isEmpty()) {
+    		throw new NullPointerException("Firm name cannot be empty.");
+    	}
+    	if(firmName.length() < 2 || firmName.length() > 30) {
+    		throw new IllegalArgumentException("Firm name cannot be shorter"
+    				+ " than 2 characters or longer than 30 characters.");
+    	}
         this.firmName = firmName;
     }
 
@@ -46,6 +58,13 @@ public class Firm implements DomainClass{
     }
 
     public void setFirmAddress(String firmAddress) {
+    	if(firmAddress == null || firmAddress.isEmpty()) {
+    		throw new NullPointerException("Address cannot be null or blank.");
+    	}
+    	if(firmAddress.length() < 2 || firmAddress.length()>30) {
+    		throw new IllegalArgumentException("Address cannot be shorter "
+    				+ "than 2 characters or longer than 30 characters.");
+    	}
         this.firmAddress = firmAddress;
     }
 

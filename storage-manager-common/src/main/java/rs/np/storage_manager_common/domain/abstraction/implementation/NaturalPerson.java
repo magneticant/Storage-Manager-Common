@@ -33,6 +33,9 @@ public class NaturalPerson extends Buyer {
     }
 
     public void setBuyer(Buyer buyer) {
+    	if(buyer == null) {
+    		throw new NullPointerException("Buyer must not be null.");
+    	}
         this.buyer = buyer;
     }
 
@@ -41,6 +44,13 @@ public class NaturalPerson extends Buyer {
     }
 
     public void setBuyerName(String buyerName) {
+    	if(buyerName == null || buyerName.isBlank()) {
+    		throw new NullPointerException("Buyer name must not be null.");
+    	}
+    	if(buyerName.length() < 2 || buyerName.length() > 30) {
+    		throw new IllegalArgumentException("Buyer name must not be less than "
+    				+ "2 characters or more than 30 characters.");
+    	}
         this.buyerName = buyerName;
     }
 
@@ -49,6 +59,13 @@ public class NaturalPerson extends Buyer {
     }
 
     public void setBuyerLastName(String buyerLastName) {
+    	if(buyerLastName == null || buyerLastName.isBlank()) {
+    		throw new NullPointerException("Buyer's last name must not be null.");
+    	}
+    	if(buyerLastName.length() < 2 || buyerLastName.length() > 30) {
+    		throw new IllegalArgumentException("Buyer's last name must not be less than "
+    				+ "2 characters or more than 30 characters.");
+    	}
         this.buyerLastName = buyerLastName;
     }
 

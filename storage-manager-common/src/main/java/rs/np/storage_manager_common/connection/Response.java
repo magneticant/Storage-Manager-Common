@@ -2,8 +2,13 @@
 package rs.np.storage_manager_common.connection;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.util.List;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
 
 /**
  *
@@ -24,7 +29,23 @@ public class Response implements Serializable{
         this.exMessage = exMessage;
     }
 
-    public Object getResponse() {
+    public <T> Object getResponse(Class<T> param) {
+    	Type domainListType = new TypeToken<List<T>>(){}.getType();
+    	if((response instanceof LinkedTreeMap<?, ?>)) {
+    		System.out.println("NOT A LIST BUT I STILL CAST IT TO DOMAIN CLASS!!!!");
+    		return new Gson().fromJson(response.toString(), param);
+    	}
+    	
+    	if(response instanceof Iterable) {
+    		System.out.println("*******************");
+    		System.out.println(response.toString());
+			System.out.println("IT IS A LIST!!!!");
+			System.out.println("*******************");
+			
+			return new Gson().fromJson(new Gson().toJson(response), domainListType);
+		}
+    	System.out.println("WORST CASE!!!! NOTHING HAPPENED!!!!");
+    	
         return response;
     }
 

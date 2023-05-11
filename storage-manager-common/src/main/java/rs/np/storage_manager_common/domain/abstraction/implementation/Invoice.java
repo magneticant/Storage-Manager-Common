@@ -9,6 +9,7 @@ import rs.np.storage_manager_common.domain.utility.DateParser;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +43,12 @@ public class Invoice extends AbstractDocument implements DomainClass {
 
     @Override
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 
@@ -52,6 +59,9 @@ public class Invoice extends AbstractDocument implements DomainClass {
 
     @Override
     public void setFirm(Firm firm) {
+    	if(firm == null) {
+    		throw new NullPointerException("Firm must not be null.");
+    	}
         this.firm = firm;
     }
 
@@ -61,6 +71,9 @@ public class Invoice extends AbstractDocument implements DomainClass {
     }
 
     public void setSecondParticipant(DomainClass partner) {
+    	if(partner == null) {
+    		throw new NullPointerException("Partner must not be set as null.");
+    	}
         this.partner = (Partner) partner;
     }
 
@@ -71,6 +84,15 @@ public class Invoice extends AbstractDocument implements DomainClass {
 
     @Override
     public void setIssueDate(Date issueDate) {
+    	if(issueDate == null) {
+    		throw new NullPointerException("Issue date must not be null");
+    	}
+    	if(issueDate.before(new Date())) {
+    		throw new DateTimeException("Issue date cannot be set in the past.");
+    	}
+    	if(this.Deadline != null && this.Deadline.before(issueDate)) {
+    		throw new DateTimeException("Due date cannot be before issue date.");
+    	}
         this.issueDate = issueDate;
     }
 
@@ -81,6 +103,15 @@ public class Invoice extends AbstractDocument implements DomainClass {
 
     @Override
     public void setDeadLine(Date Deadline) {
+    	if(Deadline == null) {
+    		throw new NullPointerException("Due date for this firm must not be set to null.");
+    	}
+    	if(Deadline.after(new Date())) {
+    		throw new DateTimeException("Due date must not be in the future.");
+    	}
+    	if(this.issueDate != null && Deadline.before(issueDate)) {
+    		throw new DateTimeException("Due date cannot be before issue date.");
+    	}
         this.Deadline = Deadline;
     }
 
@@ -91,6 +122,12 @@ public class Invoice extends AbstractDocument implements DomainClass {
 
     @Override
     public void setTotalCost(BigDecimal totalCost) {
+    	if(totalCost == null) {
+    		throw new NullPointerException("Total cost must not be null.");
+    	}
+    	if(totalCost.doubleValue() < 0) {
+    		throw new IllegalArgumentException("Total cost must not be less than 0.");
+    	}
         this.totalCost = totalCost;
     }
 
@@ -101,6 +138,9 @@ public class Invoice extends AbstractDocument implements DomainClass {
 
     @Override
     public void setItems(List<AbstractDocumentItem> items) {
+    	if(mode == null) {
+    		throw new NullPointerException("You must set mode with this method.");
+    	}
         this.items = items;
     }
 

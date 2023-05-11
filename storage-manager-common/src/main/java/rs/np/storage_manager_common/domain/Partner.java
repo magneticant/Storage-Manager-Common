@@ -31,6 +31,12 @@ public class Partner implements DomainClass, SecondParticipant {
     }
 
     public void setID(Integer ID) {
+    	if(ID == null) {
+    		throw new NullPointerException("ID cannot be null.");
+    	}
+    	if(ID < 0 || ID > 1000000) {
+    		throw new IllegalArgumentException("ID must be within range of 0 and 1000000.");
+    	}
         this.ID = ID;
     }
 
@@ -39,6 +45,13 @@ public class Partner implements DomainClass, SecondParticipant {
     }
 
     public void setBusinessPartnerName(String businessPartnerName) {
+    	if(businessPartnerName == null || businessPartnerName.isEmpty()) {
+    		throw new NullPointerException("Business partner name cannot be empty.");
+    	}
+    	if(businessPartnerName.length() < 2 || businessPartnerName.length() > 30) {
+    		throw new IllegalArgumentException("Business partner name cannot be "
+    				+ "shorter than 2 or longer than 30 characters.");
+    	}
         this.businessPartnerName = businessPartnerName;
     }
 
@@ -47,6 +60,13 @@ public class Partner implements DomainClass, SecondParticipant {
     }
 
     public void setBusinessPartnerAddress(String businessPartnerAddress) {
+    	if(businessPartnerAddress == null || businessPartnerAddress.isEmpty()) {
+    		throw new NullPointerException("Business partner address cannot be empty.");
+    	}
+    	if(businessPartnerAddress.length() < 2 || businessPartnerAddress.length() > 30) {
+    		throw new IllegalArgumentException("Business partner address cannot be "
+    				+ "shorter than 2 or longer than 30 characters.");
+    	}
         this.businessPartnerAddress = businessPartnerAddress;
     }
 
