@@ -4,7 +4,8 @@ package rs.np.storage_manager_common.connection;
 import java.io.Serializable;
 
 /**
- *
+ * Enumeracija za operaciju, opisuje sta je potrebno uciniti sa poslatim domenskim objektom.
+ * 
  * @author Milan
  */
 public enum Operation implements Serializable{

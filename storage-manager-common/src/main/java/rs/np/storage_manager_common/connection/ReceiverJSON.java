@@ -5,11 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 
 import rs.np.storage_manager_common.domain.DomainClass;
 import rs.np.storage_manager_common.domain.utility.JSONPurifier;

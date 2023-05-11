@@ -6,13 +6,28 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 /**
- *
+ * Domenska klasa koja predstavlja (nasu/e) firmu. Ona sadrzi relevantne podatke za izradu poslovnih dokumenata.
  * @author Milan
+ * 
+ * @since 1.0.0
  */
 public class Firm implements DomainClass{
+	/**
+	 * privatni atribut ID klase Firm, kao tip Integer
+	 */
     private Integer ID;
+    /**
+     * privatni atribut ime firme, kao String
+     */
     private String firmName;
+    /**
+     * privatni atribut adresa firme, kao String
+     */
     private String firmAddress;
+    /**
+     * privatni atribut koji predstavlja mod za WHERE sql klauzulu, kao enum.
+     * Nacin na koji se odredjuje jednakost WHERE klauzule.
+     */
     private WhereClauseMode mode;
     
     public Firm() {
