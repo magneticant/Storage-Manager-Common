@@ -7,24 +7,59 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 /**
- *
+ * Domenska klasa za opisivanje artikala. Sadrzi brojne podatke o artiklima na skladistu.
  * @author Milan
  * 
  * @since 1.0.0
  */
 public class Product implements DomainClass {
+	/**
+	 * privatni atribut ID klase {@link Product}, kao tip {@link Integer}
+	 */
     private Integer ID;
+    /**
+     * privatni atribut - naziv proizvoda ({@link String})
+     */
     private String productName;
+    /**
+     * privatni atribut mase proizvoda izrazene u gramima, kao {@link Double} vrednost.
+     */
     private Double weight;
+    /**
+     * privatni atribut koji nam govori o tome da li je artikal lomljiv ili ne. {@Boolean} vrednost.
+     */
     private Boolean fragile;
+    /**
+     * broj dostupnih artikala na skladistu, privatni atribut, {@link Integer}
+     */
     private Integer amount;
+    /**
+     * tip proizvoda kao {@link ProductType} (enum)
+     */
     private ProductType type;
+    /**
+     * cena proizvoda, {@link BigDecimal} vrednost
+     */
     private BigDecimal price;
+    /**
+     * mod za WHERE klauzulu, atribut tipa {@link WhereClauseMode}
+     */
     private WhereClauseMode mode;
-    
+    /**
+     * neparametarski konstruktor
+     */
     public Product() {
     }
-
+    /**
+     * all-params konstruktor
+     * @param ID identifikator kao {@link Integer}
+     * @param productName naziv proizvoda kao {@link String}
+     * @param weight masa proizvoda kao {@link Double}
+     * @param fragile lomljivost proizvoda kao {@link Boolean}
+     * @param amount kolicina proizvoda (stanje robe na skladistu) kao {@link Integer}
+     * @param type tip artikla kao {@link ProductType}
+     * @param price cena kao {@link BigDecimal}
+     */
     public Product(Integer ID, String productName, Double weight, Boolean fragile, Integer amount, ProductType type, BigDecimal price) {
         this.ID = ID;
         this.productName = productName;
@@ -34,11 +69,19 @@ public class Product implements DomainClass {
         this.type = type;
         this.price = price;
     }
-
+    /**
+     * get metoda za ID
+     * @return identifikator kao {@link Integer}
+     */
     public Integer getID() {
         return ID;
     }
-
+    /**
+     * set metoda za ID
+     * @param productID kao {@link Integer}
+     * @throws NullPointerException ako je ID unet kao null vrednost
+     * @throws IllegalArgumentException ako je unet id koji je ili manji od nule ili veci od 1000000
+     */
     public void setID(Integer productID) {
     	if(productID == null) {
     		throw new NullPointerException("ID cannot be null.");
@@ -48,11 +91,17 @@ public class Product implements DomainClass {
     	}
         this.ID = productID;
     }
-
+    /**
+     * get metoda za ime proizvoda
+     * @return ime proizvoda kao {@link String}
+     */
     public String getProductName() {
         return productName;
     }
-
+    /**
+     * set metoda za ime prozivoda
+     * @param productName ime kao {@link String}
+     */
     public void setProductName(String productName) {
     	if(productName == null || productName.isBlank()) {
     		throw new NullPointerException("Product name cannot be left blank.");
@@ -62,11 +111,19 @@ public class Product implements DomainClass {
     	}
         this.productName = productName;
     }
-
+    /**
+     * get metoda za masu proizvoda 
+     * @return masa kao {@link Double}
+     */
     public Double getWeight() {
         return weight;
     }
-
+    /**
+     * set metoda za masu proizvoda 
+     * @param weight masa kao {@link Double} vrednost
+     * @throws NullPointerException ako je uneta vrednost null za masu
+     * @throws IllegalArgumentException ako je uneta vrednsot za masu manja od nule
+     */
     public void setWeight(Double weight) {
     	if(weight == null) {
     		throw new NullPointerException("Weight cannot be null.");
@@ -76,11 +133,17 @@ public class Product implements DomainClass {
     	}
         this.weight = weight;
     }
-
+    /**
+     * get metoda za lomljivost proizvoda
+     * @return status lomljivosti kao {@link Boolean} vrednost
+     */
     public Boolean getFragile() {
         return fragile;
     }
-
+    /**
+     * set metoda za lomljivost proizvoda 
+     * @param fragile kao {@link Boolean} vrednost
+     */
     public void setFragile(Boolean fragile) {
     	if(fragile == null) {
     		throw new NullPointerException("Fragile is a boolean value"
@@ -88,11 +151,19 @@ public class Product implements DomainClass {
     	}
         this.fragile = fragile;
     }
-
+    /**
+     * get metoda za broj artikala na skladistu
+     * @return kolicina kao {@link Integer}
+     */
     public Integer getAmount() {
         return amount;
     }
-
+    /**
+     * set metoda za kolicinu robe na skladistu
+     * @param amount kao {@link Integer} vrednost
+     * @throws NullPointerException ako je uneta kolicina null vrednost.
+     * @throws IllegalArgumentException ako je unet stock manji od nule. 
+     */
     public void setAmount(Integer amount) {
     	if(amount == null) {
     		throw new NullPointerException("Stock cannot be null.");
@@ -102,22 +173,37 @@ public class Product implements DomainClass {
     	}
         this.amount = amount;
     }
-
+    /**
+     * get metoda za tip proizvoda
+     * @return type kao {@link ProductType}
+     */
     public ProductType getType() {
         return type;
     }
-
+    /**
+     * set metoda za tip proizvoda 
+     * @param type kao {@link ProductType}, tip proizvoda 
+     * @throws NullPointerException ako je uneti tip proizvoda null vrednost.
+     */
     public void setType(ProductType type) {
     	if(type == null) {
     		throw new NullPointerException("Product type must be set with this method.");
     	}
         this.type = type;
     }
-
+    /**
+     * get metoda za cenu artikla
+     * @return price, kao {@link BigDecimal} vrednost.
+     */
     public BigDecimal getPrice() {
         return price;
     }
-
+    /**
+     * set metoda za cenu artikla
+     * @param price kao {@link BigDecimal} vrednost
+     * @throws NullPointerException ako je uneta cena null vrednost
+     * @throws IllegalArgumentException ako je uneta cena manja od nule
+     */
     public void setPrice(BigDecimal price) {
     	if(price == null) {
     		throw new NullPointerException("Price cannot be undefined.");
@@ -127,18 +213,27 @@ public class Product implements DomainClass {
     	}
         this.price = price;
     }
-
+    /**
+     * get metoda za mod ({@link WhereClauseMode})
+     * @return mode kao tip {@link WhereClauseMode}
+     */
     public WhereClauseMode getMode() {
         return mode;
     }
-
+    /**
+     * set metoda za mod
+     * @param mode kao tip {@link WhereClauseMode}, mod za WHERE klauzulu.
+     * @throws NullPointerException ako je unet mod null vrednost.
+     */
     public void setMode(WhereClauseMode mode) {
     	if(mode == null) {
     		throw new NullPointerException("Mode must be set with this method.");
     	}
         this.mode = mode;
     }
-
+    /**
+     * hashCode se racuna po atributima ID, productName, weight, fragile, amount, type i price
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -151,7 +246,9 @@ public class Product implements DomainClass {
         hash = 97 * hash + Objects.hashCode(this.price);
         return hash;
     }
-
+    /**
+     * equals metoda se gleda za atribute ID, productName, weight, fragile, amount, type i price.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
