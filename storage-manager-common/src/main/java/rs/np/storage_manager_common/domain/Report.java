@@ -67,13 +67,9 @@ public class Report implements DomainClass{
     /**
      * set metoda za datum izvestaja
      * @param reportDate kao tip {@link Date}
-     * @throws NullPointerException ako je datum null vrednost
      * @throws DateTimeException ako je pokusan unos datuma izvestaja koji je u buducnosti
      */
     public void setReportDate(Date reportDate) {
-    	if(reportDate == null) {
-    		throw new NullPointerException("Date cannot be set to null.");
-    	}
     	if(reportDate.after(new Date())) {
     		throw new DateTimeException("Report date cannot be set to a future date.");
     	}
@@ -214,7 +210,23 @@ public class Report implements DomainClass{
                 rs.getDouble("ukupanKap")
             );
     }
-
-    
+    /**
+     * javna metoda koja svim stavkama izvestaja dodeljuje vrednosti datuma (ID-ja) 
+     * izvestaja kojem su namenjene.
+     * @throws IllegalStateException ako je atribut reportItems postavljen na null.
+     * 
+     */
+    public void assignItemIDs() {
+    	if(reportItems == null) {
+    		throw new IllegalStateException("Report items should not have been null.");
+    	}
+    	if(reportItems.isEmpty()) {
+    		System.out.println("There are no items.");
+    		return;
+    	}
+    	for(ReportItem item: reportItems) {
+    		item.setReportID(reportDate);
+    	}
+    }
 
 }

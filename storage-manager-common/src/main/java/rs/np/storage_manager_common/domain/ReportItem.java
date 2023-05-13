@@ -96,16 +96,9 @@ public class ReportItem implements DomainClass{
     /**
      * set metoda za ID (datum izdavanja) izvestaja
      * @param reportID kao {@link Date}
-     * @throws NullPointerException ako je pokusana dodela null vrednosti .
-     * @throws DateTimeException ako je pokusana dodela neke vrednosti datuma u buducnosti.
+     * 
      */
     public void setReportID(Date reportID) {
-    	if(reportID == null) {
-    		throw new NullPointerException("Date cannot be set to null.");
-    	}
-    	if(reportID.after(new Date())) {
-    		throw new DateTimeException("Report date cannot be set to a future date.");
-    	}
         this.reportID = reportID;
     }
     /**

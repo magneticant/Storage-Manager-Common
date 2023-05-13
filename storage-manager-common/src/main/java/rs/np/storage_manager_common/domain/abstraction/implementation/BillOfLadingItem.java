@@ -11,18 +11,33 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 /**
- *
+ * Klasa koja opisuje stanje i ponasanje stavke otpremnice (eng. bill of lading). 
+ * Nasledjuje apstraktnu klasu {@link AbstractDocumentItem}.
  * @author Milan
+ * @since 1.0.0
  */
 public class BillOfLadingItem extends AbstractDocumentItem implements DomainClass{
+	 /**
+     * privatni atribut, kupac {@link Buyer}
+     */
     private Buyer buyer;
-
+    /**
+     * neparametrizovani konstruktor
+     */
     public BillOfLadingItem() {
     }
-
-    public BillOfLadingItem(Integer ID, BillOfLading bill, Buyer buyer, Firm firm, Integer issuedAmount, Product product, WhereClauseMode mode) {
+    /**
+     * parametrizovani konstruktor
+     * @param ID identifikator stavke kao tip {@link Integer}
+     * @param billID jedinstveni identifikator otpremnice kao tip {@link Integer}
+     * @param buyer kupac kome prodajemo robu kao tip {@link Buyer}
+     * @param firm nasa firma kao tip {@link Firm}
+     * @param issuedAmount kolicina robe koja skida sa stanja ({@link Integer})
+     * @param product artikal koji skidamo sa stanja (tip {@link Product})
+     */
+    public BillOfLadingItem(Integer ID, Integer billID, Buyer buyer, Firm firm, Integer issuedAmount, Product product, WhereClauseMode mode) {
         this.ID = ID;
-        this.document = bill;
+        this.documentID = billID;
         this.buyer = buyer;
         this.firm = firm;
         this.amount = issuedAmount;
@@ -47,16 +62,16 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
     }
 
     @Override
-    public AbstractDocument getDocument() {
-        return document;
+    public Integer getDocumentID() {
+        return documentID;
     }
 
     @Override
-    public void setDocument(AbstractDocument bill) {
-    	if(bill == null) {
-    		throw new NullPointerException("Bill must not be null.");
-    	}
-        this.document = bill;
+    public void setDocumentID(Integer billID) {
+//    	if(billID == null) {
+//    		throw new NullPointerException("Bill must not be null.");
+//    	}
+        this.documentID = billID;
     }
 
     @Override
@@ -66,9 +81,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setSecondParticipant(DomainClass buyer) {
-    	if(buyer == null) {
-    		throw new NullPointerException("Buyer must not be null.");
-    	}
+//    	if(buyer == null) {
+//    		throw new NullPointerException("Buyer must not be null.");
+//    	}
         this.buyer = (Buyer)buyer;
     }
 
@@ -79,9 +94,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setFirm(Firm firm) {
-    	if(firm == null) {
-    		throw new NullPointerException("Firm must not be null.");
-    	}
+//    	if(firm == null) {
+//    		throw new NullPointerException("Firm must not be null.");
+//    	}
         this.firm = firm;
     }
 
@@ -108,9 +123,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setProduct(Product product) {
-    	if(product == null) {
-    		throw new NullPointerException("Product must not be null.");
-    	}
+//    	if(product == null) {
+//    		throw new NullPointerException("Product must not be null.");
+//    	}
         this.product = product;
     }
 
@@ -130,7 +145,7 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
     public int hashCode() {
         int hash = 3;
         hash = 17 * hash + Objects.hashCode(this.ID);
-        hash = 17 * hash + Objects.hashCode(this.document);
+        hash = 17 * hash + Objects.hashCode(this.documentID);
         hash = 17 * hash + Objects.hashCode(this.buyer);
         hash = 17 * hash + Objects.hashCode(this.firm);
         hash = 17 * hash + Objects.hashCode(this.amount);
@@ -154,7 +169,7 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
         if (!Objects.equals(this.ID, other.ID)) {
             return false;
         }
-        if (!Objects.equals(this.document, other.document)) {
+        if (!Objects.equals(this.documentID, other.documentID)) {
             return false;
         }
         if (!Objects.equals(this.buyer, other.buyer)) {
@@ -174,7 +189,7 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public String toString() {
-        return "BillOfLadingItem{" + "ID=" + ID + ", bill=" + document + ", buyer=" + buyer + ", firm=" + firm + ", issuedAmount=" + amount + ", product=" + product + ", mode=" + mode + '}';
+        return "BillOfLadingItem{" + "ID=" + ID + ", billID=" + documentID + ", buyer=" + buyer + ", firm=" + firm + ", issuedAmount=" + amount + ", product=" + product + ", mode=" + mode + '}';
     }
 
     @Override
@@ -191,7 +206,7 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
     @Override
     public String getValues() {
         return "IDStavke = " + ID + ",IDOtpremnice = " +
-                (document == null? "NULL" : document.getID()) + ", " +
+                (documentID == null? "NULL" : documentID) + ", " +
                 "IDKupca = " + (buyer == null? "NULL" : buyer.getID()) +
                 ",IDFirme = " + (firm == null? "NULL" : firm.getID()) +
                 ", izdataKolP = " + amount + ", sifraArtikla = " +
@@ -200,7 +215,7 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public String getInsertValues() {
-        return "(" + (document == null? "NULL" : document.getID()) + ", " +(buyer == null? "NULL" : buyer.getID()) +
+        return "(" + (documentID == null? "NULL" : documentID) + ", " +(buyer == null? "NULL" : buyer.getID()) +
                 ", " + (firm == null? "NULL" : firm.getID())  + ", " + amount + ", " + 
                 (product == null? "NULL" : product.getID()) + ")";
     }
@@ -223,7 +238,9 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
     public DomainClass selectObject(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    /**
+     * ovde se stock smanjuje
+     */
     @Override
     public int alterStock(int stock) {
         if(product == null){

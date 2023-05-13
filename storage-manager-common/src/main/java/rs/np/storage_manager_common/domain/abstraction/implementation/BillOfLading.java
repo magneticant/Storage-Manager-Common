@@ -18,16 +18,36 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
+ * Klasa koja opisuje stanje i ponasanje otpremnice (eng. bill of lading). 
+ * Nasledjuje apstraktnu klasu {@link AbstractDocument}.
  * @author Milan
+ * @since 1.0.0
  */
 public class BillOfLading extends AbstractDocument implements DomainClass, Serializable {
-    private Buyer buyer;
-    
+	/**
+     * privatni atribut, kupac {@link Buyer}
+     */
+	private Buyer buyer;
+    /**
+     * lista stavki dokumenta ({@link BillOfLadingItem})
+     */
+    private List<BillOfLadingItem> items;
+    /**
+     * neparametrizovani konstruktor
+     */
     public BillOfLading() {
         items = new ArrayList<>();
     }
-
+    /**
+     * parametrizovani konstruktor
+     * @param ID identifikator otpremnice kao tip {@link Integer}
+     * @param buyer kupac kome prodajemo robu kao tip {@link Buyer}
+     * @param firm nasa firma kao tip {@link Firm}
+     * @param issueDate datum izdavanja otpremnice ({@link Date})
+     * @param dueDate datum dospelosti obaveze isplate otpremnice ({@link Date})
+     * @param totalCost ukupna cena robe ({@link BigDecimal})
+     * @param mode mod po kojem se odredjuje uslov za WHERE klauzulu u SQL upitima
+     */
     public BillOfLading(Integer ID, Buyer buyer, Firm firm, Date issueDate, Date dueDate, BigDecimal totalPrice, WhereClauseMode mode) {
         this.ID = ID;
         this.buyer = buyer;
@@ -147,17 +167,17 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
         this.mode = mode;
     }
 
-    @Override
-    public List<AbstractDocumentItem> getItems() {
+    
+    public List<BillOfLadingItem> getItems() {
         return items;
     }
 
     @Override
-    public void setItems(List<AbstractDocumentItem> items) {
+    public void setItems(List<? extends AbstractDocumentItem> items) {
     	if(items == null) {
     		throw new NullPointerException("Items must be set with this method.");
     	}
-        this.items = items;
+        this.items = (List<BillOfLadingItem>) items;
     }
 
     @Override
@@ -264,5 +284,10 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
     public DomainClass selectObject(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+	@Override
+	public void addItem(AbstractDocumentItem item) {
+		items.add((BillOfLadingItem)item);
+	}
     
 }

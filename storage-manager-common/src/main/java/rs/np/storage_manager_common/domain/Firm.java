@@ -54,7 +54,7 @@ public class Firm implements DomainClass{
     }
     /**
      * set metoda za ID firme. 
-     * @param identifikator (ID) kao {@link Integer}
+     * @param ID kao {@link Integer}
      * @throws NullPointerException ako je identifikator null vrednost.
      * @throws IllegalArgumentException ako je ID ili manji od nula ili veci od milion.
      */

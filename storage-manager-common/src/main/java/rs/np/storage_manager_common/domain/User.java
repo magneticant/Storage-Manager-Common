@@ -65,7 +65,7 @@ public class User implements DomainClass{
     }
     /**
      * set metoda za ID
-     * @param kao {@link Integer}
+     * @param id kao {@link Integer}
      * @throws NullPointerException ako je pokusana dodela null vrednosti.
      * @throws IllegalArgumentException ako je pokusana dodela vrednosti manje od 0 ili vece od milion.
      */

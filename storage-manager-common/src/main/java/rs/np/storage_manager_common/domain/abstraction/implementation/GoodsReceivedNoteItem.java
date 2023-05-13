@@ -8,19 +8,37 @@ import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
-
+/**
+ * Klasa koja opisuje stanje i ponasanje stavke prijemnice (eng. goods received note). 
+ * Nasledjuje apstraktnu klasu {@link AbstractDocumentItem}.
+ * @author Milan
+ * @since 1.0.0
+ */
 public class GoodsReceivedNoteItem extends AbstractDocumentItem implements DomainClass{
-    private Partner partner;
-    
+    /**
+     * privatni atribut, poslovni partner u saradnji {@link Partner}
+     */
+	private Partner partner;
+    /**
+     * neparametrizovani konstruktor
+     */
     public GoodsReceivedNoteItem() {
     }
-
-    public GoodsReceivedNoteItem(Integer ID, GoodsReceivedNote note,
-            Firm firm, Partner patner, Integer amountAdded, Product product) {
+    /**
+     * parametrizovani konstruktor
+     * @param ID identifikator stavke kao tip {@link Integer}
+     * @param noteID jedinstveni identifikator prijemnice kao tip {@link Integer}
+     * @param firm nasa firma kao tip {@link Firm}
+     * @param partner dobavljac od kojeg primamo robu kao tip {@link Partner}
+     * @param amountAdded kolicina robe koja se dodaje na stanje ({@link Integer})
+     * @param product artikal koji dodajemo na stanje (tip {@link Product})
+     */
+    public GoodsReceivedNoteItem(Integer ID, Integer noteID,
+            Firm firm, Partner partner, Integer amountAdded, Product product) {
         this.ID = ID;
-        this.document = note;
+        this.documentID = noteID;
         this.firm = firm;
-        this.partner = patner;
+        this.partner = partner;
         this.amount = amountAdded;
         this.product = product;
     }
@@ -42,16 +60,13 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
     }
 
     @Override
-    public AbstractDocument getDocument() {
-        return document;
+    public Integer getDocumentID() {
+        return documentID;
     }
 
     @Override
-    public void setDocument(AbstractDocument note) {
-    	if(note == null) {
-    		throw new NullPointerException("Note must not be null.");
-    	}
-        this.document = note;
+    public void setDocumentID(Integer noteID) {
+        this.documentID= noteID;
     }
 
     @Override
@@ -61,9 +76,6 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setFirm(Firm firm) {
-    	if(firm == null) {
-    		throw new NullPointerException("Firm must not be null.");
-    	}
         this.firm = firm;
     }
 
@@ -74,9 +86,6 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setSecondParticipant(DomainClass partner) {
-    	if(partner == null) {
-    		throw new NullPointerException("Partner must not be null.");
-    	}
         this.partner = (Partner)partner;
     }
 
@@ -103,9 +112,6 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public void setProduct(Product product) {
-    	if(product == null) {
-    		throw new NullPointerException("Product must not be null.");
-    	}
         this.product = product;
     }
 
@@ -113,7 +119,7 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
     public int hashCode() {
         int hash = 7;
         hash = 37 * hash + Objects.hashCode(this.ID);
-        hash = 37 * hash + Objects.hashCode(this.document);
+        hash = 37 * hash + Objects.hashCode(this.documentID);
         hash = 37 * hash + Objects.hashCode(this.firm);
         hash = 37 * hash + Objects.hashCode(this.partner);
         hash = 37 * hash + Objects.hashCode(this.amount);
@@ -136,7 +142,7 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
         if (!Objects.equals(this.ID, other.ID)) {
             return false;
         }
-        if (!Objects.equals(this.document, other.document)) {
+        if (!Objects.equals(this.documentID, other.documentID)) {
             return false;
         }
         if (!Objects.equals(this.firm, other.firm)) {
@@ -153,7 +159,7 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public String toString() {
-        return "GoodsReceivedNoteItem{" + "ID=" + ID + ", note=" + document + ", firm=" + firm + ", patner=" + partner + ", amountAdded=" + amount + ", product=" + product + '}';
+        return "GoodsReceivedNoteItem{" + "ID=" + ID + ", noteID=" + documentID + ", firm=" + firm + ", patner=" + partner + ", amountAdded=" + amount + ", product=" + product + '}';
     }
 
     @Override
@@ -169,7 +175,7 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
     @Override
     public String getValues() {
         return "(IDStavkePrij = " + ID + ", IDPrijemnice = " + 
-                (document == null ? "NULL" : document.getID()) + ", IDFirme = " +
+                (documentID == null ? "NULL" : documentID) + ", IDFirme = " +
                 (firm == null ? "NULL" : firm.getID()) + ", IDPartnera = " +
                 (partner == null ? "NULL" : partner.getID()) + ", PrimljenaKolP = " +
                 amount + ", sifraArtikla = " + 
@@ -185,18 +191,10 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
 
     @Override
     public String getInsertValues() {
-        return "(" + (document == null? "NULL" : document.getID()) + ", " + (firm == null? "NULL" : firm.getID()) +
+        return "(" + (documentID == null? "NULL" : documentID) + ", " + (firm == null? "NULL" : firm.getID()) +
                 ", " + (partner == null? "NULL" : partner.getID()) + ", " + amount + ", " + 
                 (product == null? "NULL" : product.getID()) + ")";
     }
-    /*
-    private Integer ID;
-    private GoodsReceivedNote note;
-    private Firm firm;
-    private Partner partner;
-    private Integer amount;
-    private Product product;
-    */
 
     @Override
     public String getColumnsWithoutID() {
@@ -212,7 +210,9 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
     public DomainClass selectObject(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    /**
+     * ovde se stock povecava
+     */
     @Override
     public int alterStock(int stock) {
         if(product == null){

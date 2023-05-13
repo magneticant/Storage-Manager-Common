@@ -4,6 +4,7 @@ package rs.np.storage_manager_common.domain.abstraction.implementation;
 import rs.np.storage_manager_common.domain.*;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocument;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
+import rs.np.storage_manager_common.domain.abstraction.Buyer;
 import rs.np.storage_manager_common.domain.utility.DateParser;
 
 import java.math.BigDecimal;
@@ -16,16 +17,35 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
+ * Klasa koja opisuje stanje i ponasanje prijemnice (eng. goods received note). 
+ * Nasledjuje apstraktnu klasu {@link AbstractDocument}.
  * @author Milan
+ * @since 1.0.0
  */
 public class GoodsReceivedNote extends AbstractDocument implements DomainClass {
-    private Partner partner;
-    
+	/**
+     * privatni atribut, poslovni partner u saradnji {@link Partner}
+     */
+	private Partner partner;
+	/**
+     * lista stavki dokumenta ({@link GoodsReceivedNoteItem})
+     */
+    private List<GoodsReceivedNoteItem> items;
+    /**
+     * neparametrizovani konstruktor
+     */
     public GoodsReceivedNote() {
         items = new ArrayList<>();
     }
-
+    /**
+     * parametrizovani konstruktor
+     * @param ID identifikator prijemnice kao tip {@link Integer}
+     * @param firm nasa firma kao tip {@link Firm}
+     * @param partner poslovni partner od kojeg smo dobili robu ({@link Partner})
+     * @param issueDate datum izdavanja prijemnice ({@link Date})
+     * @param Deadline datum dospelosti obaveze isplate prijemnice ({@link Date})
+     * @param totalCost ukupna cena robe ({@link BigDecimal})
+     */
     public GoodsReceivedNote(Integer ID, Firm firm, Partner partner, Date issueDate, Date Deadline, BigDecimal totalCost) {
         items = new ArrayList<>();
         this.ID = ID;
@@ -132,17 +152,15 @@ public class GoodsReceivedNote extends AbstractDocument implements DomainClass {
         this.totalCost = totalCost;
     }
 
-    @Override
-    public List<AbstractDocumentItem> getItems() {
+    public List<GoodsReceivedNoteItem> getItems() {
         return items;
     }
 
-    @Override
-    public void setItems(List<AbstractDocumentItem> items) {
+    public void setItems(List<? extends AbstractDocumentItem> items) {
     	if(mode == null) {
-    		throw new NullPointerException("You must set mode with this method.");
+    		throw new NullPointerException("You must set items with this method.");
     	}
-        this.items = items;
+        this.items = (List<GoodsReceivedNoteItem>) items;
     }
 
     @Override
@@ -240,5 +258,10 @@ public class GoodsReceivedNote extends AbstractDocument implements DomainClass {
     public DomainClass selectObject(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+	@Override
+	public void addItem(AbstractDocumentItem item) {
+		items.add((GoodsReceivedNoteItem)item);
+	}
     
 }

@@ -26,7 +26,7 @@ public class Product implements DomainClass {
      */
     private Double weight;
     /**
-     * privatni atribut koji nam govori o tome da li je artikal lomljiv ili ne. {@Boolean} vrednost.
+     * privatni atribut koji nam govori o tome da li je artikal lomljiv ili ne. Boolean vrednost.
      */
     private Boolean fragile;
     /**
