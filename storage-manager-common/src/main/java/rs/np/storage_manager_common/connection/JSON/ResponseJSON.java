@@ -1,4 +1,4 @@
-package rs.np.storage_manager_common.connection;
+package rs.np.storage_manager_common.connection.JSON;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;

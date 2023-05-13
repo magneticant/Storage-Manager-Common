@@ -16,7 +16,6 @@ import com.google.gson.reflect.TypeToken;
 import rs.np.storage_manager_common.domain.DomainClass;
 import rs.np.storage_manager_common.domain.Product;
 import rs.np.storage_manager_common.domain.User;
-import rs.np.storage_manager_common.domain.utility.JSONPurifier;
 import rs.np.storage_manager_common.domain.utility.TransferType;
 
 /**

@@ -1,15 +1,10 @@
-package rs.np.storage_manager_common.connection;
+package rs.np.storage_manager_common.connection.JSON;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-
 import com.google.gson.Gson;
-
-import rs.np.storage_manager_common.domain.DomainClass;
-import rs.np.storage_manager_common.domain.utility.JSONPurifier;
-
 
 public class ReceiverJSON {
 	private Socket socket;
@@ -24,7 +19,6 @@ public class ReceiverJSON {
             System.out.println(e);
 		}
 	}
-	
 	
 	public<T> T receiveObject(Class<T> obj) throws Exception {
 		String jsonRequest = in.readLine();

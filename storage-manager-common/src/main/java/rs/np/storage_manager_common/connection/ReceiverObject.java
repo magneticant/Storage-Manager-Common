@@ -3,9 +3,6 @@ package rs.np.storage_manager_common.connection;
 import java.io.*;
 import java.net.*;
 
-import rs.np.storage_manager_common.domain.utility.JSONPurifier;
-
-
 /**
  *
  * @author Milan
