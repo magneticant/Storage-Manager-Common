@@ -1,5 +1,5 @@
 //package connection;
-package rs.np.storage_manager_common.connection;
+package rs.np.storage_manager_common.connection.abstraction.objectImpl;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -13,6 +13,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
+import rs.np.storage_manager_common.connection.Operation;
 import rs.np.storage_manager_common.domain.DomainClass;
 import rs.np.storage_manager_common.domain.Product;
 import rs.np.storage_manager_common.domain.User;

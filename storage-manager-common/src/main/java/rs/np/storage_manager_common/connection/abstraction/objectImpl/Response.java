@@ -1,5 +1,5 @@
 //package connection;
-package rs.np.storage_manager_common.connection;
+package rs.np.storage_manager_common.connection.abstraction.objectImpl;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;

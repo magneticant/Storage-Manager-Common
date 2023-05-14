@@ -1,4 +1,4 @@
-package rs.np.storage_manager_common.connection.JSON;
+package rs.np.storage_manager_common.connection.abstraction.JSONImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
