@@ -13,39 +13,73 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- *
+ * Klasa koja opisuje stanje i ponasanje pravnih lica. Nasledjuje klasu {@link Buyer}.
  * @author Milan
+ * @since 1.0.0
  */
 public class LegalPerson extends Buyer {
+	/**
+	 * privatni atribut kupac tipa {@link Buyer}. Ovaj atribut postoji zbog toga sto se referenca
+	 * na kupca cuva u klasama koje predstavaljaju specijalizaciju od kupca.
+	 */
     private Buyer buyer;
+    /**
+     * privatni atribut ime organizacije kao {@link String}
+     */
     private String firmName;
+    /**
+     * privatni atribut datum osnivanja organizacije kao {@link Date}
+     */
     private Date foundingDate;
-
+    /**
+     * neparametrizovani konstruktor
+     */
     public LegalPerson() {
     }
-
+    /**
+     * parametrizovani konstruktor
+     * @param ID jedinstveni identifikator, ID, kao tip {@link Integer}
+     * @param buyer kupac, tipa {@link Buyer}
+     * @param firmName ime pravnog lica (firme) kao {@link String}
+     * @param foundingDate datum osnivanja pravnog lica ({@link Date})
+     */
     public LegalPerson(Integer ID, Buyer buyer, String firmName, Date foundingDate) {
         this.ID = ID;
         this.buyer = buyer;
         this.firmName = firmName;
         this.foundingDate = foundingDate;
     }
-
+    /**
+     * get metoda za kupca
+     * @return kupac kao tip {@link Buyer}
+     */
     public Buyer getBuyer() {
         return buyer;
     }
-
+    /**
+     * set metoda za kupca
+     * @param buyer kupac kao tip {@link Buyer}
+     * @throws NullPointerException ako je pokusan unos null vrednosti za kupca.
+     */
     public void setBuyer(Buyer buyer) {
     	if(buyer == null) {
     		throw new NullPointerException("Buyer must not be null.");
     	}
         this.buyer = buyer;
     }
-
+    /**
+     * get metoda za naziv firme
+     * @return naziv firme kao {@link String}
+     */
     public String getFirmName() {
         return firmName;
     }
-
+    /**
+     * set metoda za naziv firme
+     * @param firmName naziv firme kao {@link String} vrednost
+     * @throws NullPointerException ako je unet prazan ili null {@link String}
+     * @throws IllegalArgumentException ako je uneti {@link String} duzine manje od 2 ili vece od 30
+     */
     public void setFirmName(String firmName) {
     	if(firmName == null || firmName.isBlank()) {
     		throw new NullPointerException("Firm name must not be null.");
@@ -56,11 +90,19 @@ public class LegalPerson extends Buyer {
     	}
         this.firmName = firmName;
     }
-
+    /**
+     * get metoda za datum osnivanja
+     * @return datum osnivanja kao {@link Date}
+     */
     public Date getFoundingDate() {
         return foundingDate;
     }
-
+    /**
+     * set metoda za datum osnivanja
+     * @param foundingDate datum osnivanja kao {@link Date}
+     * @throws NullPointerException ako je pokusan unos null datuma
+     * @throws DateTimeException ako je unet datum u buducnosti
+     */
     public void setFoundingDate(Date foundingDate) {
     	if(foundingDate == null) {
     		throw new NullPointerException("Founding date for this firm must not be set to null.");

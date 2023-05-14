@@ -21,7 +21,10 @@ import java.util.Objects;
  */
 public class Invoice extends AbstractDocument implements DomainClass {
     private Partner partner;
-    
+    /**
+     * lista stavki dokumenta ({@link AbstractDocumentItem})
+     */
+    private List<InvoiceItem> items;
     public Invoice() {
         items = new ArrayList<>();
     }
@@ -131,17 +134,15 @@ public class Invoice extends AbstractDocument implements DomainClass {
         this.totalCost = totalCost;
     }
 
-    @Override
-    public List<AbstractDocumentItem> getItems() {
+    public List<InvoiceItem> getItems() {
         return items;
     }
-
     @Override
-    public void setItems(List<AbstractDocumentItem> items) {
-    	if(mode == null) {
+    public void setItems(List<? extends AbstractDocumentItem> items) {
+    	if(items == null) {
     		throw new NullPointerException("You must set mode with this method.");
     	}
-        this.items = items;
+        this.items = (List<InvoiceItem>) items;
     }
 
     @Override
@@ -221,5 +222,10 @@ public class Invoice extends AbstractDocument implements DomainClass {
     public DomainClass selectObject(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+	@Override
+	public void addItem(AbstractDocumentItem item) {
+		items.add((InvoiceItem)item);
+	}
     
 }

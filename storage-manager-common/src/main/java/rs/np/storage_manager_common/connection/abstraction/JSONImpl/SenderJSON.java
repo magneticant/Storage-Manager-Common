@@ -1,4 +1,4 @@
-package rs.np.storage_manager_common.connection;
+package rs.np.storage_manager_common.connection.abstraction.JSONImpl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,8 +33,11 @@ public class SenderJSON {
 		GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls()
 				.setDateFormat("yyyy-MM-dd");
         Gson gson = gsonBuilder.create();
-        
+        try {
 		out.println(gson.toJson(obj));
+        }catch(Exception ex) {
+        	ex.printStackTrace();
+        }
 		System.out.println("JSON sent!");
 		System.out.println(new GsonBuilder().serializeNulls().
 				setPrettyPrinting().setDateFormat("yyyy-MM-dd")

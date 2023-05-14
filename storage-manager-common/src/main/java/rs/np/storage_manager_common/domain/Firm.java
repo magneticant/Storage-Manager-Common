@@ -13,15 +13,15 @@ import java.util.Objects;
  */
 public class Firm implements DomainClass{
 	/**
-	 * privatni atribut ID klase Firm, kao tip Integer
+	 * privatni atribut ID klase {@link Firm}, kao tip {@link Integer}
 	 */
     private Integer ID;
     /**
-     * privatni atribut ime firme, kao String
+     * privatni atribut ime firme, kao {@link String}
      */
     private String firmName;
     /**
-     * privatni atribut adresa firme, kao String
+     * privatni atribut adresa firme, kao {@link String}
      */
     private String firmAddress;
     /**
@@ -29,20 +29,35 @@ public class Firm implements DomainClass{
      * Nacin na koji se odredjuje jednakost WHERE klauzule.
      */
     private WhereClauseMode mode;
-    
+    /**
+     * neparametarski konstruktor
+     */
     public Firm() {
     }
-
+    /**
+     * all-params konstruktor
+     * @param ID identifikator firme ({@link Integer})
+     * @param firmName naziv firme ({@link String})
+     * @param firmAddress adresa firme ({@link String})
+     */
     public Firm(Integer ID, String firmName, String firmAddress) {
         this.ID = ID;
         this.firmName = firmName;
         this.firmAddress = firmAddress;
     }
-
+    /**
+     * get metoda za ID firme
+     * @return identifikator kao {@link Integer}
+     */
     public Integer getID() {
         return ID;
     }
-
+    /**
+     * set metoda za ID firme. 
+     * @param ID kao {@link Integer}
+     * @throws NullPointerException ako je identifikator null vrednost.
+     * @throws IllegalArgumentException ako je ID ili manji od nula ili veci od milion.
+     */
     public void setID(Integer ID) {
     	if(ID == null) {
     		throw new NullPointerException("ID cannot be null.");
@@ -52,37 +67,55 @@ public class Firm implements DomainClass{
     	}
         this.ID = ID;
     }
-
+    /**
+     * get metoda za naziv firme
+     * @return naziv firme kao {@link String}.
+     */
     public String getFirmName() {
         return firmName;
     }
-
+    /**
+     * set metoda za naziv firme
+     * @param firmName naziv kao {@link String}
+     * @throws NullPointerException ako je unesen null {@link String} ili prazan {@link String} za naziv firme.
+     * @throws IllegalArgumentException ako je unesen {@link String} duzine manje od 5 ili vece od 30.
+     */
     public void setFirmName(String firmName) {
     	if(firmName == null || firmName.isEmpty()) {
     		throw new NullPointerException("Firm name cannot be empty.");
     	}
-    	if(firmName.length() < 2 || firmName.length() > 30) {
+    	if(firmName.length() < 5 || firmName.length() > 30) {
     		throw new IllegalArgumentException("Firm name cannot be shorter"
     				+ " than 2 characters or longer than 30 characters.");
     	}
         this.firmName = firmName;
     }
-
+    /**
+     * get metoda za adresu firme
+     * @return adresa firme kao {@link String}.
+     */
     public String getFirmAddress() {
         return firmAddress;
     }
-
+    /**
+     * set metoda za adresu firme
+     * @param firmAddress adresa firme kao {@link String} vrednost.
+     * @throws NullPointerException ako je unesena adresa firme null vrednost ili prazan {@link String}.
+     * @throws IllegalArgumentException ako je unesena adresa firme duzine manje od 10 ili vece od 30 karaktera.
+     */
     public void setFirmAddress(String firmAddress) {
     	if(firmAddress == null || firmAddress.isEmpty()) {
     		throw new NullPointerException("Address cannot be null or blank.");
     	}
-    	if(firmAddress.length() < 2 || firmAddress.length()>30) {
+    	if(firmAddress.length() < 10 || firmAddress.length()>30) {
     		throw new IllegalArgumentException("Address cannot be shorter "
     				+ "than 2 characters or longer than 30 characters.");
     	}
         this.firmAddress = firmAddress;
     }
-
+    /**
+     * hashCode metoda se racuna za ID, firmName i firmAddress.
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -91,7 +124,9 @@ public class Firm implements DomainClass{
         hash = 67 * hash + Objects.hashCode(this.firmAddress);
         return hash;
     }
-
+    /**
+     * equals metoda se gleda za ID, firmName i firmAddress.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -112,7 +147,9 @@ public class Firm implements DomainClass{
         }
         return Objects.equals(this.ID, other.ID);
     }
-
+    /**
+     * toString metoda vraca samo naziv firme.
+     */
     @Override
     public String toString() {
 //        return "Firm{" + "ID=" + ID + ", firmName=" + firmName + ", firmAddress=" + firmAddress + '}';

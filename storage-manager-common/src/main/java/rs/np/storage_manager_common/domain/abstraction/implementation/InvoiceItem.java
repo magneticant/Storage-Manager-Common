@@ -11,20 +11,35 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 /**
- *
+ * Klasa koja opisuje stanje i ponasanje stavke narudzbenice (eng. invoice). 
+ * Nasledjuje apstraktnu klasu {@link AbstractDocumentItem}.
  * @author Milan
+ * @since 1.0.0
  */
 public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
+	/**
+     * privatni atribut, poslovni partner u saradnji {@link Partner}
+     */
     private Partner partner;
-    
+    /**
+     * neparametrizovani konstruktor
+     */
     public InvoiceItem() {
     }
-
-    public InvoiceItem(Integer ID, AbstractDocument invoice, Firm firm, Partner patner, Integer amountAdded, Product product) {
+    /**
+     * parametrizovani konstruktor
+     * @param ID identifikator stavke kao tip {@link Integer}
+     * @param invoiceID jedinstveni identifikator narudzbenice kao tip {@link Integer}
+     * @param firm nasa firma kao tip {@link Firm}
+     * @param partner dobavljac od kojeg porucujemo robu kao tip {@link Partner}
+     * @param amountAdded kolicina robe koja se porucuje ({@link Integer})
+     * @param product artikal koji porucujemo (tip {@link Product})
+     */
+    public InvoiceItem(Integer ID, Integer invoiceID, Firm firm, Partner partner, Integer amountAdded, Product product) {
         this.ID = ID;
-        this.document = invoice;
+        this.documentID = invoiceID;
         this.firm = firm;
-        this.partner = patner;
+        this.partner = partner;
         this.amount = amountAdded;
         this.product = product;
     }
@@ -46,16 +61,16 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
     }
 
     @Override
-    public AbstractDocument getDocument() {
-        return document;
+    public Integer getDocumentID() {
+        return documentID;
     }
 
     @Override
-    public void setDocument(AbstractDocument invoice) {
-    	if(invoice == null) {
-    		throw new NullPointerException("Invoice must not be set to null.");
-    	}
-        this.document = invoice;
+    public void setDocumentID(Integer invoiceID) {
+//    	if(invoiceID == null) {
+//    		throw new NullPointerException("Invoice must not be set to null.");
+//    	}
+        this.documentID = invoiceID;
     }
 
     @Override
@@ -112,7 +127,7 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
     public int hashCode() {
         int hash = 7;
         hash = 37 * hash + Objects.hashCode(this.ID);
-        hash = 37 * hash + Objects.hashCode(this.document);
+        hash = 37 * hash + Objects.hashCode(this.documentID);
         hash = 37 * hash + Objects.hashCode(this.firm);
         hash = 37 * hash + Objects.hashCode(this.partner);
         hash = 37 * hash + Objects.hashCode(this.amount);
@@ -135,7 +150,7 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
         if (!Objects.equals(this.ID, other.ID)) {
             return false;
         }
-        if (!Objects.equals(this.document, other.document)) {
+        if (!Objects.equals(this.documentID, other.documentID)) {
             return false;
         }
         if (!Objects.equals(this.firm, other.firm)) {
@@ -152,7 +167,7 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
 
     @Override
     public String toString() {
-        return "InvoiceItem{" + "ID=" + ID + ", invoice=" + document + ", firm=" + firm + ", partner=" + partner + ", amountAdded=" + amount + ", product=" + product + ", mode=" + mode + '}';
+        return "InvoiceItem{" + "ID=" + ID + ", invoiceID=" + documentID + ", firm=" + firm + ", partner=" + partner + ", amountAdded=" + amount + ", product=" + product + ", mode=" + mode + '}';
     }
     
     @Override
@@ -168,7 +183,7 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
     @Override
     public String getValues() {
         return "(IdStavkeNar = " + ID + ", IDNarudzbenice = " + 
-                (document == null ? "NULL" : document.getID()) + ", IDFirme = " +
+                (documentID == null ? "NULL" : documentID) + ", IDFirme = " +
                 (firm == null ? "NULL" : firm.getID()) + ", IDPartnera = " +
                 (partner == null ? "NULL" : partner.getID()) + ", PorucenaKolN = " +
                 amount + ", sifraArtikla = " + 
@@ -184,7 +199,7 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
 
     @Override
     public String getInsertValues() {
-        return "(" + (document == null? "NULL" : document.getID()) + ", " + (firm == null? "NULL" : firm.getID()) +
+        return "(" + (documentID == null? "NULL" : documentID) + ", " + (firm == null? "NULL" : firm.getID()) +
                 ", " + (partner == null? "NULL" : partner.getID()) + ", " + amount + ", " + 
                 (product == null? "NULL" : product.getID()) + ")";
     }
@@ -224,7 +239,9 @@ public class InvoiceItem extends AbstractDocumentItem implements DomainClass {
     public DomainClass selectObject(ResultSet rs) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    /**
+     * ovde stock ostaje isti (jer tek sad porucujemo robu, nije nam jos stigla)
+     */
     @Override
     public int alterStock(int stock) {
         if(product == null)
