@@ -1,12 +1,14 @@
 package rs.np.storage_manager_common.connection.abstraction.JSONImpl;
 
+import java.io.Serializable;
+
 import com.google.gson.GsonBuilder;
 
 import rs.np.storage_manager_common.connection.Operation;
 import rs.np.storage_manager_common.connection.abstraction.Request;
 
 
-public class RequestJSON implements Request{
+public class RequestJSON implements Request, Serializable{
 	private String obj;
 	private Operation operation;
 	
@@ -24,6 +26,7 @@ public class RequestJSON implements Request{
 
 	@Override
 	public <T> T getObj(Class<T> className) {
+		System.out.println("POKUSAVAM DA IZGETUJEM");
 		return (T) new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create().fromJson(obj, className);
 	}
 
@@ -37,11 +40,8 @@ public class RequestJSON implements Request{
 	public void setObj(Object obj) {
 		if(obj == null)
 			return;
-		if(!(obj instanceof String)) {
-			throw new IllegalArgumentException("You must assign "
-					+ "a String value to RequestJSON.");
-		}
-		this.obj = (String)obj;
+		this.obj = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create().toJson(obj);
+		
 	}
 	@Override
 	public Operation getOperation() {

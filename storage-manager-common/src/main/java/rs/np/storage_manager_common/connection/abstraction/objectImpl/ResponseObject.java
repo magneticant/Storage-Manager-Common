@@ -1,6 +1,7 @@
 //package connection;
 package rs.np.storage_manager_common.connection.abstraction.objectImpl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
@@ -11,7 +12,7 @@ import rs.np.storage_manager_common.connection.abstraction.Response;
  *
  * @author Milan
  */
-public class ResponseObject implements Response{
+public class ResponseObject implements Response, Serializable{
     private Object response;
 //    private Exception ex;
     @SerializedName(value = "exception_content")

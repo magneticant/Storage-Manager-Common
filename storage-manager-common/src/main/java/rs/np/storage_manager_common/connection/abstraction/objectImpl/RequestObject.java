@@ -18,19 +18,18 @@ import rs.np.storage_manager_common.connection.abstraction.Request;
 import rs.np.storage_manager_common.domain.DomainClass;
 import rs.np.storage_manager_common.domain.Product;
 import rs.np.storage_manager_common.domain.User;
-import rs.np.storage_manager_common.domain.utility.TransferType;
 
 /**
  *
  * @author Milan
  */
-public class RequestObject implements Request{
+public class RequestObject implements Request, Serializable{
     private Object obj;
     private Operation operation;
     public RequestObject() {
     }
 
-    public RequestObject(Object obj, Operation operation, TransferType type) {
+    public RequestObject(Object obj, Operation operation) {
     	this.operation = operation;
     	this.obj = obj;
     }

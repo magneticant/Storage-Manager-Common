@@ -1,5 +1,6 @@
 package rs.np.storage_manager_common.connection.abstraction.JSONImpl;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.Arrays;
@@ -11,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
 
 import rs.np.storage_manager_common.connection.abstraction.Response;
 
-public class ResponseJSON implements Response{
+public class ResponseJSON implements Response, Serializable{
 	private String response;
 	@SerializedName(value = "exception_content")
 	private String exMessage;
