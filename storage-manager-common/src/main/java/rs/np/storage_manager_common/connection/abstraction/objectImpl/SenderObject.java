@@ -3,12 +3,14 @@ package rs.np.storage_manager_common.connection.abstraction.objectImpl;
 import java.io.*;
 import java.net.*;
 
+import rs.np.storage_manager_common.connection.abstraction.Sender;
+
 
 /**
  *
  * @author Milan
  */
-public class SenderObject {
+public class SenderObject implements Sender{
     private Socket socket;
     private ObjectOutputStream out;
 
@@ -21,7 +23,7 @@ public class SenderObject {
             System.out.println(ex);
         }
     }
-    
+    @Override
     public void sendObject(Object obj) throws Exception {
         try {
             out.writeObject(obj);

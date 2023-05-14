@@ -14,6 +14,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 
 import rs.np.storage_manager_common.connection.Operation;
+import rs.np.storage_manager_common.connection.abstraction.Request;
 import rs.np.storage_manager_common.domain.DomainClass;
 import rs.np.storage_manager_common.domain.Product;
 import rs.np.storage_manager_common.domain.User;
@@ -23,29 +24,29 @@ import rs.np.storage_manager_common.domain.utility.TransferType;
  *
  * @author Milan
  */
-public class Request implements Serializable{
+public class RequestObject implements Request{
     private Object obj;
     private Operation operation;
-    public Request() {
+    public RequestObject() {
     }
 
-    public Request(Object obj, Operation operation, TransferType type) {
+    public RequestObject(Object obj, Operation operation, TransferType type) {
     	this.operation = operation;
     	this.obj = obj;
     }
-
-	public <T> Object getObj(Class<T> className) {
+    @Override
+	public <T> T getObj(Class<T> className) {
 		return (T)obj;
 	}
-
+    @Override
 	public void setObj(Object obj) {
 		this.obj = obj;
 	}
-
+    @Override
 	public Operation getOperation() {
 		return operation;
 	}
-
+    @Override
 	public void setOperation(Operation operation) {
 		this.operation = operation;
 	}

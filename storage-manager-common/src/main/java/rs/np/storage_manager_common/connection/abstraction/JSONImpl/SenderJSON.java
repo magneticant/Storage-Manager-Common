@@ -9,13 +9,14 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import rs.np.storage_manager_common.connection.abstraction.Sender;
 import rs.np.storage_manager_common.domain.Report;
 import rs.np.storage_manager_common.domain.ReportItem;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocument;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
 
 
-public class SenderJSON {
+public class SenderJSON implements Sender{
 	private Socket socket;
 	private PrintWriter out;
 	
@@ -28,8 +29,8 @@ public class SenderJSON {
             System.out.println(e);
 		}
 	}
-	
-	public void sendObject(Object obj) {
+	@Override
+	public void sendObject(Object obj) throws Exception{
 		GsonBuilder gsonBuilder = new GsonBuilder().serializeNulls()
 				.setDateFormat("yyyy-MM-dd");
         Gson gson = gsonBuilder.create();

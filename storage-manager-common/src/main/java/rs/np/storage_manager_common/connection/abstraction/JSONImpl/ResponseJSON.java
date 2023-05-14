@@ -9,7 +9,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseJSON {
+import rs.np.storage_manager_common.connection.abstraction.Response;
+
+public class ResponseJSON implements Response{
 	private String response;
 	@SerializedName(value = "exception_content")
 	private String exMessage;
@@ -22,27 +24,27 @@ public class ResponseJSON {
 		this.response = response;
 		this.exMessage = exMessage;
 	}
-
-	public <T> List<T> getResponse(Class<T> className, boolean t) {
+	@Override
+	public <T> List<T> getResponse(Class<T> className, boolean isList) {
 		Gson gson = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create();
 		return Arrays.asList(gson.fromJson(response, (Type) Array.newInstance(className, 0).getClass()));
 	}
-
+	@Override
 	public <T> T getResponse(Class<T> className) {
 		Gson gson = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create();
 		return gson.fromJson(response, className);
 	}
-	
+	@Override
 	public <T>void setResponse(T response, Class<T> className) {
 		if(response == null)
 			return;
 		this.response = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create().toJson(response, className);
 	}
-
+	@Override
 	public String getExMessage() {
 		return exMessage;
 	}
-
+	@Override
 	public void setExMessage(String exMessage) {
 		this.exMessage = exMessage;
 	}
@@ -51,8 +53,10 @@ public class ResponseJSON {
 	public String toString() {
 		return "ResponseJSON [response=" + response + ", exMessage=" + exMessage + "]";
 	}
-
+	@Override
 	public <T> void setResponse(List<T> response, Class<T[]> class1) {
+		if(response == null) 
+			return;
 		this.response = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create().toJson(response.toArray(), class1);
 	}
 	

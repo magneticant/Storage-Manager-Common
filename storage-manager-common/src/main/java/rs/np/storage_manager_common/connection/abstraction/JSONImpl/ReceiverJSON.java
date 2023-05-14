@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import com.google.gson.Gson;
 
-public class ReceiverJSON {
+import rs.np.storage_manager_common.connection.abstraction.Receiver;
+
+public class ReceiverJSON implements Receiver{
 	private Socket socket;
 	private BufferedReader in;
 	
@@ -19,7 +21,7 @@ public class ReceiverJSON {
             System.out.println(e);
 		}
 	}
-	
+	@Override
 	public<T> T receiveObject(Class<T> obj) throws Exception {
 		String jsonRequest = in.readLine();
 		System.out.println("JSON received!");
