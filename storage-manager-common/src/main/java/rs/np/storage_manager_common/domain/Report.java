@@ -58,6 +58,18 @@ public class Report implements DomainClass{
         this.totalCapacity = totalCapacity;
     }
     /**
+     * parametrizovani konstruktor
+     * @param reportDate datum izrade izvestaja (ovo je ID izvestaja)
+     * @param totalCapacity totalni ukupni kapacitet skladista (double vrednost)
+     * @param reportItems stavke izvestaja date kao lista {@link ReportItem} objekata
+     */
+    public Report(Date reportDate, double totalCapacity, List<ReportItem> reportItems) {
+        reportItems = new ArrayList<>();
+        this.reportDate = reportDate;
+        this.totalCapacity = totalCapacity;
+        this.reportItems = reportItems;
+    }
+    /**
      * get metoda za datum izvestaja
      * @return reportDate kao tip {@link Date}
      */
