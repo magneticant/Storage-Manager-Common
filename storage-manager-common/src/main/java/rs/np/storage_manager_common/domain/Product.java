@@ -231,58 +231,30 @@ public class Product implements DomainClass {
     	}
         this.mode = mode;
     }
+    
     /**
-     * hashCode se racuna po atributima ID, productName, weight, fragile, amount, type i price
+     * hashCode se racuna za ID i productName
      */
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.ID);
-        hash = 97 * hash + Objects.hashCode(this.productName);
-        hash = 97 * hash + Objects.hashCode(this.weight);
-        hash = 97 * hash + Objects.hashCode(this.fragile);
-        hash = 97 * hash + Objects.hashCode(this.amount);
-        hash = 97 * hash + Objects.hashCode(this.type);
-        hash = 97 * hash + Objects.hashCode(this.price);
-        return hash;
-    }
+	public int hashCode() {
+		return Objects.hash(ID, productName);
+	}
+    
     /**
-     * equals metoda se gleda za atribute ID, productName, weight, fragile, amount, type i price.
+     * equals se racuna za ID i productName
      */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Product other = (Product) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.productName, other.productName)) {
-            return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
-        if (!Objects.equals(this.weight, other.weight)) {
-            return false;
-        }
-        if (!Objects.equals(this.fragile, other.fragile)) {
-            return false;
-        }
-        if (!Objects.equals(this.amount, other.amount)) {
-            return false;
-        }
-        return Objects.equals(this.price, other.price);
-    }
-
-    @Override
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(ID, other.ID) && Objects.equals(productName, other.productName);
+	}
+	@Override
     public String getTableName() {
         return "artikal";
     }

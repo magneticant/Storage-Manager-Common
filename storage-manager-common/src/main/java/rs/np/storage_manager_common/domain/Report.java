@@ -82,7 +82,7 @@ public class Report implements DomainClass{
      * @throws DateTimeException ako je pokusan unos datuma izvestaja koji je u buducnosti
      */
     public void setReportDate(Date reportDate) {
-    	if(reportDate.after(new Date())) {
+    	if(reportDate!= null && reportDate.after(new Date())) {
     		throw new DateTimeException("Report date cannot be set to a future date.");
     	}
         this.reportDate = reportDate;
