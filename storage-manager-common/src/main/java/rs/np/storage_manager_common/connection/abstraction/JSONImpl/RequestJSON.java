@@ -26,7 +26,6 @@ public class RequestJSON implements Request, Serializable{
 
 	@Override
 	public <T> T getObj(Class<T> className) {
-		System.out.println("POKUSAVAM DA IZGETUJEM");
 		return (T) new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create().fromJson(obj, className);
 	}
 
