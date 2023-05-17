@@ -176,15 +176,17 @@ public class ReportItem implements DomainClass{
     	}
         this.mode = mode;
     }
-    /**
-     * hashCode se gleda za ID, mode, product, productCapacity, reportID i totalAvailableCapacity.
-     */
+    
+	/**
+	 * hashCode se racuna za ID i reportID
+	 */
     @Override
 	public int hashCode() {
-		return Objects.hash(ID, mode, product, productCapacity, reportID, totalAvailableCapacity);
+		return Objects.hash(ID, reportID);
 	}
+    
     /**
-     * equals se gleda za ID, mode, product, productCapacity, reportID i totalAvailableCapacity.
+     * equals se racuna za ID i reportID
      */
 	@Override
 	public boolean equals(Object obj) {
@@ -195,14 +197,9 @@ public class ReportItem implements DomainClass{
 		if (getClass() != obj.getClass())
 			return false;
 		ReportItem other = (ReportItem) obj;
-		return Objects.equals(ID, other.ID) && mode == other.mode && Objects.equals(product, other.product)
-				&& Objects.equals(productCapacity, other.productCapacity) && Objects.equals(reportID, other.reportID)
-				&& Objects.equals(totalAvailableCapacity, other.totalAvailableCapacity);
+		return Objects.equals(ID, other.ID) && Objects.equals(reportID, other.reportID);
 	}
-
-	
-
-    @Override
+	@Override
 	public String toString() {
 		return "ReportItem [ID=" + ID + ", reportID=" + reportID + ", productCapacity=" + productCapacity + ", product="
 				+ product + ", totalAvailableCapacity=" + totalAvailableCapacity + ", mode=" + mode + "]";

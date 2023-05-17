@@ -177,51 +177,29 @@ public class User implements DomainClass{
         this.mode = mode;
     }
 
-    
     /**
-     * hashCode se racuna za ID, name, lastname, username i password
+     * hashCode se racuna za ID, password i username
      */
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + Objects.hashCode(this.ID);
-        hash = 47 * hash + Objects.hashCode(this.name);
-        hash = 47 * hash + Objects.hashCode(this.lastName);
-        hash = 47 * hash + Objects.hashCode(this.username);
-        hash = 47 * hash + Objects.hashCode(this.password);
-        return hash;
-    }
+	public int hashCode() {
+		return Objects.hash(ID, password, username);
+	}
     /**
-     * equals se racuna za ID, name, lastname, username i password
+     * equals se racuna za ID, password i username
      */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.lastName, other.lastName)) {
-            return false;
-        }
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        return Objects.equals(this.ID, other.ID);
-    }
-
-    @Override
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(ID, other.ID) && Objects.equals(password, other.password)
+				&& Objects.equals(username, other.username);
+	}
+	@Override
     public String toString() {
         return "User{" + "id=" + ID + ", name=" + name + ", lastName=" + lastName + ", username=" + username + ", password=" + password + '}';
     }
