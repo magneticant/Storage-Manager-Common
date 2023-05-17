@@ -1,6 +1,8 @@
 //package domain.abstraction;
 package rs.np.storage_manager_common.domain.abstraction;
 
+import rs.np.storage_manager_common.domain.DomainClass;
+
 /**
  * Ovaj interfejs je prazan jer apstrahuje raznorodne entitete, kojima je jedino zajednicko
  * da budu drugi ucesnici u poslovnoj saradnji sa firmom. Iz tog razloga ne namecem klasama
@@ -10,5 +12,5 @@ package rs.np.storage_manager_common.domain.abstraction;
  * @since 1.0.0
  */
 
-public interface SecondParticipant {
+public interface SecondParticipant extends DomainClass{
 }

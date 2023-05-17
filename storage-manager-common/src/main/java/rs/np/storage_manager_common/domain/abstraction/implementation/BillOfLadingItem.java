@@ -68,9 +68,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setDocumentID(Integer billID) {
-//    	if(billID == null) {
-//    		throw new NullPointerException("Bill must not be null.");
-//    	}
         this.documentID = billID;
     }
 
@@ -81,9 +78,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setSecondParticipant(DomainClass buyer) {
-//    	if(buyer == null) {
-//    		throw new NullPointerException("Buyer must not be null.");
-//    	}
         this.buyer = (Buyer)buyer;
     }
 
@@ -94,9 +88,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setFirm(Firm firm) {
-//    	if(firm == null) {
-//    		throw new NullPointerException("Firm must not be null.");
-//    	}
         this.firm = firm;
     }
 
@@ -123,9 +114,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setProduct(Product product) {
-//    	if(product == null) {
-//    		throw new NullPointerException("Product must not be null.");
-//    	}
         this.product = product;
     }
 
