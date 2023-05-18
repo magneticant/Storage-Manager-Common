@@ -1,12 +1,16 @@
 package rs.np.storage_manager_common.domain;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public abstract class DomainClassTest {
 	protected DomainClass domainClass;
@@ -41,4 +45,30 @@ public abstract class DomainClassTest {
 		assertTrue(domainClass.getInsertValues().contains(")"));
 		assertTrue(domainClass.getInsertValues().contains("("));
 	}
+	
+	@Test
+	@DisplayName("Set ID test for null values")
+	void setIDNull() {
+		assertThrows(NullPointerException.class,
+				()->domainClass.setID(null));
+	}
+	
+	@CsvSource({
+		"-1",
+		"1000001"
+	})
+	@ParameterizedTest
+	@DisplayName("Set ID test for illegal argument")
+	void setIDIllegalArgument(Integer arg) {
+		assertThrows(IllegalArgumentException.class,
+				()->domainClass.setID(arg));
+	}
+	
+	@Test
+	@DisplayName("Set ID test for a normal value")
+	void setIDNormal() {
+		domainClass.setID(1);
+		assertEquals(1, ((Firm) domainClass).getID());
+	}
+	
 }
