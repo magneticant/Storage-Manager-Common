@@ -157,7 +157,7 @@ public class GoodsReceivedNote extends AbstractDocument implements DomainClass {
     }
 
     public void setItems(List<? extends AbstractDocumentItem> items) {
-    	if(mode == null) {
+    	if(items == null) {
     		throw new NullPointerException("You must set items with this method.");
     	}
         this.items = (List<GoodsReceivedNoteItem>) items;
@@ -207,8 +207,8 @@ public class GoodsReceivedNote extends AbstractDocument implements DomainClass {
 
     @Override
     public String toString() {
-        return "ID:" + this.ID + " IDFirme: " + this.firm.getID() +
-                " IDPartnera: " + this.partner.getID() + 
+        return "ID:" + this.ID + " IDFirme: " + this.firm == null? null : this.firm.getID() +
+                " IDPartnera: " + this.partner == null ? null : this.partner.getID() + 
                 " datumIzdavanja: " + this.issueDate +
                 " datumValute: " + this.Deadline + ";";
     }
