@@ -97,6 +97,20 @@ class LegalPersonTest {
 			assertEquals("2010-01-01", sdf.format(legalPerson.getFoundingDate()));
 		}
 		
+		@Test
+		void equalsTestSameObj() {
+			assertTrue(legalPerson.equals(legalPerson));
+		}
+		
+		@Test
+		void equalsTestNullObj() {
+			assertFalse(legalPerson.equals(null));
+		}
+		
+		@Test
+		void equalsTestDifferentClass() {
+			assertFalse(legalPerson.equals(new Gson()));
+		}
 		
 		@CsvSource({
 			"firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", true",
@@ -127,4 +141,9 @@ class LegalPersonTest {
 			}
 		}
 		
+		@Test
+		void toStringTest() {
+			legalPerson.setFirmName("new firm name");
+			assertTrue(legalPerson.toString().contains("new firm name"));
+		}
 }
