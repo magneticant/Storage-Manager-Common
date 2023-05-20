@@ -22,11 +22,13 @@ class GoodsReceivedNoteTest extends AbstractDocumentTest{
 	@BeforeEach
 	void setUp() throws Exception {
 		document = new GoodsReceivedNote();
+		document1 = new GoodsReceivedNote();
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		document = null;
+		document1 = null;
 	}
 
 	@Test

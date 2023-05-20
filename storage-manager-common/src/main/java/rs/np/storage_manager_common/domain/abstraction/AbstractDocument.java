@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.time.DateTimeException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Apstraktna klasa koja opisuje stanje i ponasanje razlicitih poslovnih dokumenata 
@@ -129,4 +130,26 @@ public abstract class AbstractDocument implements Serializable, DomainClass {
      * @param item tipa {@link AbstractDocumentItem}, stavka poslovnog dokumenta za dodavanje
      */
 	public abstract void addItem(AbstractDocumentItem item);
+	/**
+	 * hashCode se racuna iskljucivo za ID
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(ID);
+	}
+	/**
+	 * equals metoda se racuna iskljucivo po ID-ju
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractDocument other = (AbstractDocument) obj;
+		return Objects.equals(ID, other.ID);
+	}
+	
 }

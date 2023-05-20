@@ -180,55 +180,6 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
         this.items = (List<BillOfLadingItem>) items;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.ID);
-        hash = 19 * hash + Objects.hashCode(this.buyer);
-        hash = 19 * hash + Objects.hashCode(this.firm);
-        hash = 19 * hash + Objects.hashCode(this.issueDate);
-        hash = 19 * hash + Objects.hashCode(super.Deadline);
-        hash = 19 * hash + Objects.hashCode(super.totalCost);
-        hash = 19 * hash + Objects.hashCode(this.mode);
-        hash = 19 * hash + Objects.hashCode(this.items);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final BillOfLading other = (BillOfLading) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.buyer, other.buyer)) {
-            return false;
-        }
-        if (!Objects.equals(this.firm, other.firm)) {
-            return false;
-        }
-        if (!Objects.equals(this.issueDate, other.issueDate)) {
-            return false;
-        }
-        if (!Objects.equals(this.Deadline, other.Deadline)) {
-            return false;
-        }
-        if (!Objects.equals(this.totalCost, other.totalCost)) {
-            return false;
-        }
-        if (this.mode != other.mode) {
-            return false;
-        }
-        return Objects.equals(this.items, other.items);
-    }
 
     @Override
     public String toString() {

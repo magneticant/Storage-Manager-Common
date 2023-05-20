@@ -21,11 +21,13 @@ class BillOfLadingTest extends AbstractDocumentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		document = new BillOfLading();
+		document1 = new BillOfLading();
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		document = null;
+		document1 = null;
 	}
 
 	@Test
@@ -74,6 +76,8 @@ class BillOfLadingTest extends AbstractDocumentTest {
 	void equalsTestDifferentClass() {
 		assertFalse(document.equals(new Gson()));
 	}
+	
+	
 	
 	@Test
 	void toStringTest() {

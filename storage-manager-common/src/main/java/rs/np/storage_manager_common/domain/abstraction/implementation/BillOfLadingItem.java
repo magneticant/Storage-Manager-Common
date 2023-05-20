@@ -130,52 +130,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
     }
 
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.ID);
-        hash = 17 * hash + Objects.hashCode(this.documentID);
-        hash = 17 * hash + Objects.hashCode(this.buyer);
-        hash = 17 * hash + Objects.hashCode(this.firm);
-        hash = 17 * hash + Objects.hashCode(this.amount);
-        hash = 17 * hash + Objects.hashCode(this.product);
-        hash = 17 * hash + Objects.hashCode(this.mode);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final BillOfLadingItem other = (BillOfLadingItem) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.documentID, other.documentID)) {
-            return false;
-        }
-        if (!Objects.equals(this.buyer, other.buyer)) {
-            return false;
-        }
-        if (!Objects.equals(this.firm, other.firm)) {
-            return false;
-        }
-        if (!Objects.equals(this.amount, other.amount)) {
-            return false;
-        }
-        if (!Objects.equals(this.product, other.product)) {
-            return false;
-        }
-        return this.mode == other.mode;
-    }
-
-    @Override
     public String toString() {
         return "BillOfLadingItem{" + "ID=" + ID + ", billID=" + documentID + ", buyer=" + buyer + ", firm=" + firm + ", issuedAmount=" + amount + ", product=" + product + ", mode=" + mode + '}';
     }

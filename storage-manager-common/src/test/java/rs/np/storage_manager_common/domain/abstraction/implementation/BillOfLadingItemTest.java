@@ -18,11 +18,13 @@ class BillOfLadingItemTest extends AbstractDocumentItemTest{
 	@BeforeEach
 	void setUp() throws Exception {
 		item = new BillOfLadingItem();
+		item1 = new BillOfLadingItem();
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		item = null;
+		item1 = null;
 	}
 
 	@Test
@@ -53,4 +55,6 @@ class BillOfLadingItemTest extends AbstractDocumentItemTest{
 		
 		assertEquals(buyer, item.getSecondParticipant());
 	}
+	
+	
 }

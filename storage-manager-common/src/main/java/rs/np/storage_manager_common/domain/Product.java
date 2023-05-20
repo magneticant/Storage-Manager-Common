@@ -106,8 +106,8 @@ public class Product implements DomainClass {
     	if(productName == null || productName.isBlank()) {
     		throw new NullPointerException("Product name cannot be left blank.");
     	}
-    	if(productName.length() <2 || productName.length()>30) {
-    		throw new IllegalArgumentException("Product name cannot be less than 2 or longer than 30");
+    	if(productName.length()>30) {
+    		throw new IllegalArgumentException("Product name cannot be longer than 30");
     	}
         this.productName = productName;
     }

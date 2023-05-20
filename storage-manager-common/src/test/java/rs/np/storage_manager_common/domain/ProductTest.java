@@ -51,7 +51,7 @@ class ProductTest extends DomainClassTest{
 	}
 	
 	@CsvSource({
-		"a",
+		"abcdefghijklmnopqrstuvwxyz12345",
 		"This product name is a very long String and it's longer than 30 characters"
 	})
 	@ParameterizedTest

@@ -15,10 +15,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import com.google.gson.Gson;
+
 import rs.np.storage_manager_common.domain.Firm;
 
 public abstract class AbstractDocumentTest {
 	protected AbstractDocument document;
+	protected AbstractDocument document1;
 	protected DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	@Test
@@ -162,6 +165,33 @@ public abstract class AbstractDocumentTest {
 	void setSecondParticipantTestNull() {
 		assertThrows(NullPointerException.class,
 				()->document.setSecondParticipant(null));
+	}
+	
+	@Test
+	void equalsTestSameObj() {
+		assertTrue(document.equals(document));
+	}
+	
+	@Test
+	void equalsTestNullObj() {
+		assertFalse(document.equals(null));
+	}
+	
+	@Test
+	void equalsTestDifferentClass() {
+		assertFalse(document.equals(new Gson()));
+	}
+	
+	@CsvSource({
+		"1, 1, true",
+		"1, 2, false"
+	})
+	@ParameterizedTest
+	void equalsTest(Integer ID1, Integer ID2, boolean result) {
+		document.setID(ID1);
+		document1.setID(ID2);
+		
+		assertEquals(result, document.equals(document1));
 	}
 	
 }

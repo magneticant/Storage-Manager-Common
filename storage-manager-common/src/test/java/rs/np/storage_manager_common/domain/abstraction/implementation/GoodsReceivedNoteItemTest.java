@@ -15,11 +15,13 @@ class GoodsReceivedNoteItemTest extends AbstractDocumentItemTest{
 	@BeforeEach
 	void setUp() throws Exception {
 		item = new GoodsReceivedNoteItem();
+		item1 = new GoodsReceivedNoteItem();
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		item = null;
+		item1 = null;
 	}
 
 	

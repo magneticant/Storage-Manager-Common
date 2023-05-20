@@ -3,6 +3,7 @@ package rs.np.storage_manager_common.domain.abstraction;
 
 import rs.np.storage_manager_common.domain.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Apstraktna klasa koja opisuje stanje i ponasanje razlicitih stavki poslovnih dokumenata 
@@ -104,4 +105,27 @@ public abstract class AbstractDocumentItem implements Serializable, DomainClass 
      * @return novo stanje na skladistu posle racunanja (kao int)
      */
     public abstract int alterStock(int stock);
+    /**
+     * hashCode se racuna za ID i documentID
+     */
+	@Override
+	public int hashCode() {
+		return Objects.hash(ID, documentID);
+	}
+	/**
+	 * equals se racuna za ID i documentID
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractDocumentItem other = (AbstractDocumentItem) obj;
+		return Objects.equals(ID, other.ID) && Objects.equals(documentID, other.documentID);
+	}
+    
+    
 }
