@@ -97,6 +97,9 @@ class GoodsReceivedNoteTest extends AbstractDocumentTest{
 			assertTrue(document.toString().contains("2020"));
 			assertTrue(document.toString().contains("3001"));
 			assertTrue(document.toString().contains("01"));
-		} catch (ParseException e) {}
+		} catch (ParseException e) {
+			e.printStackTrace();
+			fail("Test has thrown an exception");
+		}
 	}
 }

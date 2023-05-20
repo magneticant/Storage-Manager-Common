@@ -122,7 +122,10 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
     public WhereClauseMode getMode() {
         return mode;
     }
-
+    /**
+     * set metoda za mod po kojem se gleda WHERE uslov u SQL naredbi
+     * @param mode mod po kojem se gleda WHERE uslov u SQL naredbi, kao tip {@link WhereClauseMode}
+     */
     public void setMode(WhereClauseMode mode) {
     	if(mode == null) {
     		throw new NullPointerException("Mode must be set with this method.");

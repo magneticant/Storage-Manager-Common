@@ -49,7 +49,10 @@ class ReportTest extends DomainClassTest{
 	void setReportDateNormal() {
 		try{
 			((Report)domainClass).setReportDate(sdf.parse("2010-01-01"));
-		}catch(ParseException ex) { }
+		}catch(ParseException ex) {
+			ex.printStackTrace();
+			fail("Test has thrown an exception");
+		}
 		assertEquals("2010-01-01", sdf.format(((Report)domainClass).getReportDate()));
 	}
 	

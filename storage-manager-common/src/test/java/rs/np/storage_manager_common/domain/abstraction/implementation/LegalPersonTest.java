@@ -93,7 +93,10 @@ class LegalPersonTest {
 		void setFoundingDateNormal() {
 			try{
 				legalPerson.setFoundingDate(sdf.parse("2010-01-01"));
-			}catch(ParseException ex) { }
+			}catch(ParseException ex) { 
+				ex.printStackTrace();
+				fail("Test has thrown an exception");
+			}
 			assertEquals("2010-01-01", sdf.format(legalPerson.getFoundingDate()));
 		}
 		
@@ -112,16 +115,16 @@ class LegalPersonTest {
 			assertFalse(legalPerson.equals(new Gson()));
 		}
 		
-		@CsvSource({
-			"firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", true",
-			"firmName2, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", false",
-			"firmName1, {\"ID\":2,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", false",
-			"firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2021-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", false",
-			"firmName2, {\"ID\":2,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", false",
-			"firmName1, {\"ID\":2,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2021-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", false",
-			"firmName2, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2021-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", false",
-			"firmName2, {\"ID\":2,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2021-01-01\",firmName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, \"2020-01-01\", false",
-		})
+		@CsvSource(value={
+		        "firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|true",
+		        "firmName2|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|false",
+		        "firmName1|{\"ID\":2,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|false",
+		        "firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2021-01-01|firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|false",
+		        "firmName2|{\"ID\":2,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|false",
+		        "firmName1|{\"ID\":2,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2021-01-01|firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|false",
+		        "firmName2|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2021-01-01|firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|false",
+		        "firmName2|{\"ID\":2,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2021-01-01|firmName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|2020-01-01|false"
+		}, delimiter='|')
 		@ParameterizedTest
 		void equalsTestWithCSVSource(String name1, String buyer1JSON, String date1,
 				String name2, String buyer2JSON, String date2, boolean result) {
@@ -138,6 +141,7 @@ class LegalPersonTest {
 				assertEquals(result, legalPerson.equals(legalPerson1));
 			}catch(Exception ex) {
 				ex.printStackTrace();
+				fail("Test has thrown an exception");
 			}
 		}
 		

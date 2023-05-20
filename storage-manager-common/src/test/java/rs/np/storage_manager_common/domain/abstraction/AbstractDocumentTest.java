@@ -72,7 +72,10 @@ public abstract class AbstractDocumentTest {
 			Date newDate = sdf.parse("3001-01-01");
 			assertThrows(DateTimeException.class, 
 					()->document.setIssueDate(newDate));
-		} catch (ParseException e) {}
+		} catch (ParseException e) {
+			e.printStackTrace();
+			fail("Test has thrown an Exception");
+		}
 	}
 	
 	@Test

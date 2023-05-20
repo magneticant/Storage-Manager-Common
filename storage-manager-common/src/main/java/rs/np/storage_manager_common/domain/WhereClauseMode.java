@@ -9,5 +9,16 @@ package rs.np.storage_manager_common.domain;
  * @since 1.0.0
  */
 public enum WhereClauseMode {
-    BY_ID, BY_NAME, BY_USERNAME_PASSWORD
+	/**
+	 * pretraga po ID-ju
+	 */
+    BY_ID,
+    /**
+     * pretraga po nazivu ili delu naziva
+     */
+    BY_NAME, 
+    /**
+     * pretraga po korisnickom imenu i lozinki (koristi se za User klasu)
+     */
+    BY_USERNAME_PASSWORD
 }

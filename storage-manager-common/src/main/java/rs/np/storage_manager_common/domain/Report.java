@@ -194,11 +194,26 @@ public class Report implements DomainClass{
         return "true";
     }
     /**
-     * Ovde je specifican slucaj posto je ID zapravo datum izvestaja. Ova metoda ne radi nista (prazno telo).
+     * Ovo je samo placeholder vrednost da bi se ispostovala struktura apstraktnih metoda 
+     * zadatih interfejsom DomainClass. Svaka klasa je u obavezi da implementira get i set metodu za ID,
+     *  a posto ovde ne postoji ID kao integer, dodeljuje se placeholder vrednosti.
      */
+    private Integer placeholder;
+    
     @Override
     public void setID(Integer id) {
-        
+        if(id == null) {
+        	throw new NullPointerException("Id must not be set to null");
+        }
+        if(id < 0 || id > 1000000) {
+        	throw new IllegalArgumentException("Id must be set to a value between 0 and 1000000");
+        }
+        placeholder = id;
+    }
+    
+    @Override
+    public Integer getID() {
+    	return placeholder;
     }
 
     @Override

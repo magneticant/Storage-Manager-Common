@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -128,23 +129,23 @@ class NaturalPersonTest{
 			assertFalse(naturalPerson.equals(new Gson()));
 		}
 		
-		@CsvSource({
-			"firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, lastName1 ,firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, firstName1, true",
-			"firstName2, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, lastName1, firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, firstName1, false",
-			"firstName1, {\"ID\":2,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, lastName1, firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, firstName1, false",
-			"firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, lastName2, firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, firstName1, false",
-			"firstName2, {\"ID\":2,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, lastName1, firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, firstName1, false",
-			"firstName1, {\"ID\":2,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, lastName2, firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, firstName1, false",
-			"firstName2, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, lastName2, firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, firstName1, false",
-			"firstName2, {\"ID\":2,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, lastName2, firstName1, {\"ID\":1,\"buyerAddress\":\"address123\", \"mode\":\"BY_ID\"}, firstName1, false",
-		})
+		@CsvSource(value ={
+		    "firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|true",
+		    "firstName2|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|false",
+		    "firstName1|{\"ID\":2,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|false",
+		    "firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName2|firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|false",
+		    "firstName2|{\"ID\":2,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|false",
+		    "firstName1|{\"ID\":2,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName2|firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|false",
+		    "firstName2|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName2|firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|false",
+		    "firstName2|{\"ID\":2,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName2|firstName1|{\"ID\":1,\"buyerAddress\":\"address123\",\"mode\":\"BY_ID\"}|lastName1|false"
+		}, delimiter = '|')
 		@ParameterizedTest
 		void equalsTestWithCSVSource(String name1, String buyer1JSON, String lastName1,
 				String name2, String buyer2JSON, String lastName2, boolean result) {
 			try {
 				naturalPerson.setBuyerName(name1);
 				naturalPerson.setBuyer(gson.fromJson(buyer1JSON, Buyer.class));
-				naturalPerson.setBuyerLastName(lastName2);
+				naturalPerson.setBuyerLastName(lastName1);
 				
 				NaturalPerson naturalPerson1 = new NaturalPerson();
 				naturalPerson1.setBuyerName(name2);
@@ -154,6 +155,7 @@ class NaturalPersonTest{
 				assertEquals(result, naturalPerson.equals(naturalPerson1));
 			}catch(Exception ex) {
 				ex.printStackTrace();
+				fail("Test has thrown an exception");
 			}
 		}
 }

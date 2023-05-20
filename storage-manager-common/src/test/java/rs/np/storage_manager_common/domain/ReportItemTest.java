@@ -158,7 +158,10 @@ class ReportItemTest extends DomainClassTest{
 			
 			assertEquals(result,((ReportItem)domainClass).equals(item));
 			
-		} catch(ParseException ex) { }
+		} catch(ParseException ex) {
+			ex.printStackTrace();
+			fail("Test has thrown an exception.");
+		}
 	}
 	
 	@Test

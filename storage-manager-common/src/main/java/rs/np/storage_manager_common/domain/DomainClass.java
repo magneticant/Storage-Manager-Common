@@ -47,6 +47,11 @@ public interface DomainClass extends Serializable{
      */
     public void setID(Integer id);
     /**
+     * get metoda za ID.
+     * @return id kao {@link Integer}
+     */
+    public Integer getID();
+    /**
      * Slicna metoda kao getColumnNames ove klase, samo bez ID 
      * @return spisak svih kolona tabele u bazi, unutar zagrada, odvojeni zarezima, u {@link String} formatu.
      */

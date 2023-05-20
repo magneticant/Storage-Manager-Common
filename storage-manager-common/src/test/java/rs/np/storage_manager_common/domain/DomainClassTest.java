@@ -68,7 +68,7 @@ public abstract class DomainClassTest {
 	@DisplayName("Set ID test for a normal value")
 	void setIDNormal() {
 		domainClass.setID(1);
-		assertEquals(1, ((Firm) domainClass).getID());
+		assertEquals(1, domainClass.getID());
 	}
 	
 }
