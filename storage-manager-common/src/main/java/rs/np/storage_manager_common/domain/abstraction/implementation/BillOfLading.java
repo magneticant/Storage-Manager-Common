@@ -45,7 +45,7 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
      * @param firm nasa firma kao tip {@link Firm}
      * @param issueDate datum izdavanja otpremnice ({@link Date})
      * @param dueDate datum dospelosti obaveze isplate otpremnice ({@link Date})
-     * @param totalCost ukupna cena robe ({@link BigDecimal})
+     * @param totalPrice ukupna cena robe ({@link BigDecimal})
      * @param mode mod po kojem se odredjuje uslov za WHERE klauzulu u SQL upitima
      */
     public BillOfLading(Integer ID, Buyer buyer, Firm firm, Date issueDate, Date dueDate, BigDecimal totalPrice, WhereClauseMode mode) {
@@ -159,7 +159,10 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
     public WhereClauseMode getMode() {
         return mode;
     }
-
+    /**
+     * set metoda za mod kojim se odredjuje uslov u WHERE klauzuli za CRUD operaciju.
+     * @param mode mod za uslov u WHERE klauzuli za SQL operaciju, kao tip {@link WhereClauseMode}
+     */
     public void setMode(WhereClauseMode mode) {
     	if(mode == null) {
     		throw new NullPointerException("You must set mode with this method.");
@@ -180,55 +183,6 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
         this.items = (List<BillOfLadingItem>) items;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.ID);
-        hash = 19 * hash + Objects.hashCode(this.buyer);
-        hash = 19 * hash + Objects.hashCode(this.firm);
-        hash = 19 * hash + Objects.hashCode(this.issueDate);
-        hash = 19 * hash + Objects.hashCode(super.Deadline);
-        hash = 19 * hash + Objects.hashCode(super.totalCost);
-        hash = 19 * hash + Objects.hashCode(this.mode);
-        hash = 19 * hash + Objects.hashCode(this.items);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final BillOfLading other = (BillOfLading) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.buyer, other.buyer)) {
-            return false;
-        }
-        if (!Objects.equals(this.firm, other.firm)) {
-            return false;
-        }
-        if (!Objects.equals(this.issueDate, other.issueDate)) {
-            return false;
-        }
-        if (!Objects.equals(this.Deadline, other.Deadline)) {
-            return false;
-        }
-        if (!Objects.equals(this.totalCost, other.totalCost)) {
-            return false;
-        }
-        if (this.mode != other.mode) {
-            return false;
-        }
-        return Objects.equals(this.items, other.items);
-    }
 
     @Override
     public String toString() {

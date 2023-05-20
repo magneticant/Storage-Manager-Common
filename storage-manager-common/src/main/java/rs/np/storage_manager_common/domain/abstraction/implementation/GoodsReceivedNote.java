@@ -157,58 +157,16 @@ public class GoodsReceivedNote extends AbstractDocument implements DomainClass {
     }
 
     public void setItems(List<? extends AbstractDocumentItem> items) {
-    	if(mode == null) {
+    	if(items == null) {
     		throw new NullPointerException("You must set items with this method.");
     	}
         this.items = (List<GoodsReceivedNoteItem>) items;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.ID);
-        hash = 41 * hash + Objects.hashCode(this.firm);
-        hash = 41 * hash + Objects.hashCode(this.partner);
-        hash = 41 * hash + Objects.hashCode(this.issueDate);
-        hash = 41 * hash + Objects.hashCode(this.Deadline);
-        hash = 41 * hash + Objects.hashCode(this.totalCost);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final GoodsReceivedNote other = (GoodsReceivedNote) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.firm, other.firm)) {
-            return false;
-        }
-        if (!Objects.equals(this.partner, other.partner)) {
-            return false;
-        }
-        if (!Objects.equals(this.issueDate, other.issueDate)) {
-            return false;
-        }
-        if (!Objects.equals(this.totalCost, other.totalCost)) {
-            return false;
-        }
-        return Objects.equals(this.Deadline, other.Deadline);
-    }
-
-    @Override
     public String toString() {
-        return "ID:" + this.ID + " IDFirme: " + this.firm.getID() +
-                " IDPartnera: " + this.partner.getID() + 
+        return "ID:" + this.ID + " IDFirme: " + this.firm == null? null : this.firm.getID() +
+                " IDPartnera: " + this.partner == null ? null : this.partner.getID() + 
                 " datumIzdavanja: " + this.issueDate +
                 " datumValute: " + this.Deadline + ";";
     }

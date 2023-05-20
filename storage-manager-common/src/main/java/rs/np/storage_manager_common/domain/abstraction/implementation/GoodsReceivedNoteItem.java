@@ -116,48 +116,6 @@ public class GoodsReceivedNoteItem extends AbstractDocumentItem implements Domai
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.ID);
-        hash = 37 * hash + Objects.hashCode(this.documentID);
-        hash = 37 * hash + Objects.hashCode(this.firm);
-        hash = 37 * hash + Objects.hashCode(this.partner);
-        hash = 37 * hash + Objects.hashCode(this.amount);
-        hash = 37 * hash + Objects.hashCode(this.product);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final GoodsReceivedNoteItem other = (GoodsReceivedNoteItem) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.documentID, other.documentID)) {
-            return false;
-        }
-        if (!Objects.equals(this.firm, other.firm)) {
-            return false;
-        }
-        if (!Objects.equals(this.partner, other.partner)) {
-            return false;
-        }
-        if (!Objects.equals(this.amount, other.amount)) {
-            return false;
-        }
-        return Objects.equals(this.product, other.product);
-    }
-
-    @Override
     public String toString() {
         return "GoodsReceivedNoteItem{" + "ID=" + ID + ", noteID=" + documentID + ", firm=" + firm + ", patner=" + partner + ", amountAdded=" + amount + ", product=" + product + '}';
     }

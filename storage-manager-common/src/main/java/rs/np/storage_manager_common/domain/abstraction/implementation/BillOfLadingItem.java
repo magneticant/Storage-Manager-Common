@@ -34,6 +34,7 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
      * @param firm nasa firma kao tip {@link Firm}
      * @param issuedAmount kolicina robe koja skida sa stanja ({@link Integer})
      * @param product artikal koji skidamo sa stanja (tip {@link Product})
+     * @param mode mod po kojem se odredjuje uslov u WHERE klauzuli za SQL upite nad bazom kao tip {@link WhereClauseMode}
      */
     public BillOfLadingItem(Integer ID, Integer billID, Buyer buyer, Firm firm, Integer issuedAmount, Product product, WhereClauseMode mode) {
         this.ID = ID;
@@ -68,9 +69,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setDocumentID(Integer billID) {
-//    	if(billID == null) {
-//    		throw new NullPointerException("Bill must not be null.");
-//    	}
         this.documentID = billID;
     }
 
@@ -81,9 +79,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setSecondParticipant(DomainClass buyer) {
-//    	if(buyer == null) {
-//    		throw new NullPointerException("Buyer must not be null.");
-//    	}
         this.buyer = (Buyer)buyer;
     }
 
@@ -94,9 +89,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setFirm(Firm firm) {
-//    	if(firm == null) {
-//    		throw new NullPointerException("Firm must not be null.");
-//    	}
         this.firm = firm;
     }
 
@@ -123,9 +115,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
 
     @Override
     public void setProduct(Product product) {
-//    	if(product == null) {
-//    		throw new NullPointerException("Product must not be null.");
-//    	}
         this.product = product;
     }
 
@@ -139,52 +128,6 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
     		throw new NullPointerException("Mode must be set with this method.");
     	}
         this.mode = mode;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.ID);
-        hash = 17 * hash + Objects.hashCode(this.documentID);
-        hash = 17 * hash + Objects.hashCode(this.buyer);
-        hash = 17 * hash + Objects.hashCode(this.firm);
-        hash = 17 * hash + Objects.hashCode(this.amount);
-        hash = 17 * hash + Objects.hashCode(this.product);
-        hash = 17 * hash + Objects.hashCode(this.mode);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final BillOfLadingItem other = (BillOfLadingItem) obj;
-        if (!Objects.equals(this.ID, other.ID)) {
-            return false;
-        }
-        if (!Objects.equals(this.documentID, other.documentID)) {
-            return false;
-        }
-        if (!Objects.equals(this.buyer, other.buyer)) {
-            return false;
-        }
-        if (!Objects.equals(this.firm, other.firm)) {
-            return false;
-        }
-        if (!Objects.equals(this.amount, other.amount)) {
-            return false;
-        }
-        if (!Objects.equals(this.product, other.product)) {
-            return false;
-        }
-        return this.mode == other.mode;
     }
 
     @Override

@@ -58,6 +58,18 @@ public class Report implements DomainClass{
         this.totalCapacity = totalCapacity;
     }
     /**
+     * parametrizovani konstruktor
+     * @param reportDate datum izrade izvestaja (ovo je ID izvestaja)
+     * @param totalCapacity totalni ukupni kapacitet skladista (double vrednost)
+     * @param reportItems stavke izvestaja date kao lista {@link ReportItem} objekata
+     */
+    public Report(Date reportDate, double totalCapacity, List<ReportItem> reportItems) {
+        reportItems = new ArrayList<>();
+        this.reportDate = reportDate;
+        this.totalCapacity = totalCapacity;
+        this.reportItems = reportItems;
+    }
+    /**
      * get metoda za datum izvestaja
      * @return reportDate kao tip {@link Date}
      */
@@ -70,7 +82,7 @@ public class Report implements DomainClass{
      * @throws DateTimeException ako je pokusan unos datuma izvestaja koji je u buducnosti
      */
     public void setReportDate(Date reportDate) {
-    	if(reportDate.after(new Date())) {
+    	if(reportDate!= null && reportDate.after(new Date())) {
     		throw new DateTimeException("Report date cannot be set to a future date.");
     	}
         this.reportDate = reportDate;
@@ -112,7 +124,10 @@ public class Report implements DomainClass{
     	}
         this.reportItems = reportItems;
     }
-
+    /**
+     * Set metoda za mod po kojem se odredjuje uslov u WHERE klauzuli SQL upita
+     * @param mode mod po kojem se odredjuje uslov u WHERE klauzuli SQL upita, kao tip {@link WhereClauseMode}
+     */
     public void setMode(WhereClauseMode mode) {
     	if(mode == null) {
     		throw new NullPointerException("Mode must be set with this method.");
