@@ -95,7 +95,7 @@ public abstract class AbstractDocumentItem implements Serializable, DomainClass 
     public abstract DomainClass getSecondParticipant();
     /**
      * set metoda za drugu stranu poslovne saradnje (moze biti kupac, prodavac, dobavljac itd.)
-     * @param product artikal kao tip {@link Product}
+     * @param participant ucesnik kao tip {@link DomainClass}
      */
     public abstract void setSecondParticipant(DomainClass participant);
     /**

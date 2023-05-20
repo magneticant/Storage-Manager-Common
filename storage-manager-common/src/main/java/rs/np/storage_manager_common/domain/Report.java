@@ -124,7 +124,10 @@ public class Report implements DomainClass{
     	}
         this.reportItems = reportItems;
     }
-
+    /**
+     * Set metoda za mod po kojem se odredjuje uslov u WHERE klauzuli SQL upita
+     * @param mode mod po kojem se odredjuje uslov u WHERE klauzuli SQL upita, kao tip {@link WhereClauseMode}
+     */
     public void setMode(WhereClauseMode mode) {
     	if(mode == null) {
     		throw new NullPointerException("Mode must be set with this method.");

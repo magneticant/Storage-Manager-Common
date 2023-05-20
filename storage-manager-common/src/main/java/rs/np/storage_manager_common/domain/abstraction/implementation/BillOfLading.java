@@ -45,7 +45,7 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
      * @param firm nasa firma kao tip {@link Firm}
      * @param issueDate datum izdavanja otpremnice ({@link Date})
      * @param dueDate datum dospelosti obaveze isplate otpremnice ({@link Date})
-     * @param totalCost ukupna cena robe ({@link BigDecimal})
+     * @param totalPrice ukupna cena robe ({@link BigDecimal})
      * @param mode mod po kojem se odredjuje uslov za WHERE klauzulu u SQL upitima
      */
     public BillOfLading(Integer ID, Buyer buyer, Firm firm, Date issueDate, Date dueDate, BigDecimal totalPrice, WhereClauseMode mode) {
@@ -159,7 +159,10 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
     public WhereClauseMode getMode() {
         return mode;
     }
-
+    /**
+     * set metoda za mod kojim se odredjuje uslov u WHERE klauzuli za CRUD operaciju.
+     * @param mode mod za uslov u WHERE klauzuli za SQL operaciju, kao tip {@link WhereClauseMode}
+     */
     public void setMode(WhereClauseMode mode) {
     	if(mode == null) {
     		throw new NullPointerException("You must set mode with this method.");

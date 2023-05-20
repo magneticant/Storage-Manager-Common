@@ -34,6 +34,7 @@ public class BillOfLadingItem extends AbstractDocumentItem implements DomainClas
      * @param firm nasa firma kao tip {@link Firm}
      * @param issuedAmount kolicina robe koja skida sa stanja ({@link Integer})
      * @param product artikal koji skidamo sa stanja (tip {@link Product})
+     * @param mode mod po kojem se odredjuje uslov u WHERE klauzuli za SQL upite nad bazom kao tip {@link WhereClauseMode}
      */
     public BillOfLadingItem(Integer ID, Integer billID, Buyer buyer, Firm firm, Integer issuedAmount, Product product, WhereClauseMode mode) {
         this.ID = ID;

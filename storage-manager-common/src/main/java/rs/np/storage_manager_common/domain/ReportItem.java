@@ -248,7 +248,10 @@ public class ReportItem implements DomainClass{
         return "datumIzvestaja, kapacitetArt,sifraArtikla, ukupanKapDostupno";
     }
 
-    
+    /**
+     * metoda za racunanje iskoriscenog kapaciteta skladista za konkretnu stavku izvestaja
+     * @return vrednost sracunatog kapaciteta kao {@link Double}
+     */
     public Double calculateCapacity() {
         if(product == null)
             return Double.valueOf(100);
