@@ -3,6 +3,7 @@ package rs.np.storage_manager_common.connection.abstraction.JSONImpl;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +29,9 @@ public class ResponseJSON implements Response, Serializable{
 	@Override
 	public <T> List<T> getResponse(Class<T> className, boolean isList) {
 		Gson gson = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd").create();
-		return Arrays.asList(gson.fromJson(response, (Type) Array.newInstance(className, 0).getClass()));
+		List<T> result = Arrays.asList(gson.fromJson(response, (Type) Array.newInstance(className, 0).getClass()));
+		ArrayList<T> resultList = new ArrayList<>(result);
+		return resultList;
 	}
 	@Override
 	public <T> T getResponse(Class<T> className) {

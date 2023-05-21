@@ -233,16 +233,15 @@ public class Product implements DomainClass {
     }
     
     /**
-     * hashCode se racuna za ID i productName
+     * hashCode se racuna za productName
      */
-    @Override
+	@Override
 	public int hashCode() {
-		return Objects.hash(ID, productName);
+		return Objects.hash(productName);
 	}
-    
-    /**
-     * equals se racuna za ID i productName
-     */
+	/**
+	 * equals se racuna za productName
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -252,8 +251,9 @@ public class Product implements DomainClass {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return Objects.equals(ID, other.ID) && Objects.equals(productName, other.productName);
+		return Objects.equals(productName, other.productName);
 	}
+	
 	@Override
     public String getTableName() {
         return "artikal";
