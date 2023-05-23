@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import rs.np.storage_manager_common.connection.abstraction.Receiver;
 
 public class ReceiverJSON implements Receiver{
+	@SuppressWarnings("unused")
 	private Socket socket;
 	private BufferedReader in;
 	

@@ -2,12 +2,11 @@
 package rs.np.storage_manager_common.domain.abstraction.implementation;
 
 import rs.np.storage_manager_common.domain.*;
-import rs.np.storage_manager_common.domain.abstraction.AbstractDocument;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
+
 /**
  * Klasa koja opisuje stanje i ponasanje stavke prijemnice (eng. goods received note). 
  * Nasledjuje apstraktnu klasu {@link AbstractDocumentItem}.

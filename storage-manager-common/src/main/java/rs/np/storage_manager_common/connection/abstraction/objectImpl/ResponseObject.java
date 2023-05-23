@@ -25,7 +25,8 @@ public class ResponseObject implements Response, Serializable{
         this.exMessage = exMessage;
         this.response = response;
     }
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
 	public <T> T getResponse(Class<T> className) {
 		return (T)response;
 	}

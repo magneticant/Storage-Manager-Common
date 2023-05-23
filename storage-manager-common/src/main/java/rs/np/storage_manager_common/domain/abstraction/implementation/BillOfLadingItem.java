@@ -2,13 +2,11 @@
 package rs.np.storage_manager_common.domain.abstraction.implementation;
 
 import rs.np.storage_manager_common.domain.*;
-import rs.np.storage_manager_common.domain.abstraction.AbstractDocument;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
 import rs.np.storage_manager_common.domain.abstraction.Buyer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 
 /**
  * Klasa koja opisuje stanje i ponasanje stavke otpremnice (eng. bill of lading). 

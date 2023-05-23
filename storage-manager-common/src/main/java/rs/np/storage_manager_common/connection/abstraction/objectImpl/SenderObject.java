@@ -11,7 +11,8 @@ import rs.np.storage_manager_common.connection.abstraction.Sender;
  * @author Milan
  */
 public class SenderObject implements Sender{
-    private Socket socket;
+    @SuppressWarnings("unused")
+	private Socket socket;
     private ObjectOutputStream out;
 
     public SenderObject(Socket socket) {

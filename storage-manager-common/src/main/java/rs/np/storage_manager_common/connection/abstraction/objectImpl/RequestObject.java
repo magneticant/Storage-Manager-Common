@@ -2,22 +2,9 @@
 package rs.np.storage_manager_common.connection.abstraction.objectImpl;
 
 import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.internal.LinkedTreeMap;
-import com.google.gson.reflect.TypeToken;
 
 import rs.np.storage_manager_common.connection.Operation;
 import rs.np.storage_manager_common.connection.abstraction.Request;
-import rs.np.storage_manager_common.domain.DomainClass;
-import rs.np.storage_manager_common.domain.Product;
-import rs.np.storage_manager_common.domain.User;
 
 /**
  *
@@ -33,7 +20,8 @@ public class RequestObject implements Request, Serializable{
     	this.operation = operation;
     	this.obj = obj;
     }
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
 	public <T> T getObj(Class<T> className) {
 		return (T)obj;
 	}

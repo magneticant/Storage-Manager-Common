@@ -4,19 +4,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import rs.np.storage_manager_common.connection.abstraction.Sender;
-import rs.np.storage_manager_common.domain.Report;
-import rs.np.storage_manager_common.domain.ReportItem;
-import rs.np.storage_manager_common.domain.abstraction.AbstractDocument;
-import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
 
 
 public class SenderJSON implements Sender{
+	@SuppressWarnings("unused")
 	private Socket socket;
 	private PrintWriter out;
 	

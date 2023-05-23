@@ -15,7 +15,6 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Klasa koja opisuje stanje i ponasanje otpremnice (eng. bill of lading). 
@@ -175,7 +174,8 @@ public class BillOfLading extends AbstractDocument implements DomainClass, Seria
         return items;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void setItems(List<? extends AbstractDocumentItem> items) {
     	if(items == null) {
     		throw new NullPointerException("Items must be set with this method.");

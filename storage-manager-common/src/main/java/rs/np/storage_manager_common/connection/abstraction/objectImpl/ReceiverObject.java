@@ -10,7 +10,8 @@ import rs.np.storage_manager_common.connection.abstraction.Receiver;
  * @author Milan
  */
 public class ReceiverObject implements Receiver{
-    private Socket socket; 
+    @SuppressWarnings("unused")
+	private Socket socket; 
     private ObjectInputStream in;
     
     public ReceiverObject(Socket socket) {
@@ -22,7 +23,8 @@ public class ReceiverObject implements Receiver{
             System.out.println(ex);
         }
     }
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public <T> T receiveObject(Class<T> object) throws Exception {
         try {
             Object obj = in.readObject();

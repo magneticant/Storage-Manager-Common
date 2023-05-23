@@ -3,10 +3,8 @@ package rs.np.storage_manager_common.domain;
 
 //import domain.utility.DateParser;
 import rs.np.storage_manager_common.domain.utility.DateParser;
-import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Date;
