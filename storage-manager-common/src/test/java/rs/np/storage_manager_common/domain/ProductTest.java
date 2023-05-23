@@ -178,19 +178,15 @@ class ProductTest extends DomainClassTest{
 	}
 	
 	@CsvSource({
-		"1, productNum1, 1, productNum1, true",
-		"1, productNum1, 2, productNum1, false",
-		"1, productNum1, 1, productNum2, false",
-		"1, productNum1, 2, productNum2, false"
+		"productNum1, productNum1, true",
+		"productNum1, productNum2, false",
 	})
 	@ParameterizedTest
-	void equalsTestNormal(Integer ID1, String name1, 
-			Integer ID2, String name2, boolean result) {
+	void equalsTestNormal(String name1, 
+			String name2, boolean result) {
 		((Product)domainClass).setProductName(name1);
-		((Product)domainClass).setID(ID1);
 		
 		Product product = new Product();
-		product.setID(ID2);
 		product.setProductName(name2);
 		
 		assertEquals(result, product.equals(domainClass));
