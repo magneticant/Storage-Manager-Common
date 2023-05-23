@@ -233,16 +233,17 @@ public class Product implements DomainClass {
     }
     
     /**
-     * hashCode se racuna za productName
+     * hashCode se racuna za productName i ID
      */
-	@Override
-	public int hashCode() {
-		return Objects.hash(productName);
-	}
+    @Override
+  	public int hashCode() {
+  		return Objects.hash(ID, productName);
+  	}
+    
 	/**
-	 * equals se racuna za productName
+	 * equals se racuna za productName i ID
 	 */
-	@Override
+    @Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -251,7 +252,7 @@ public class Product implements DomainClass {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return Objects.equals(productName, other.productName);
+		return Objects.equals(ID, other.ID) && Objects.equals(productName, other.productName);
 	}
 	
 	@Override
@@ -259,7 +260,7 @@ public class Product implements DomainClass {
         return "artikal";
     }
 
-    @Override
+	@Override
     public String getColumnNames() {
         return "sifraArtikla, imeArtikla, gramaza, lomljiv, kolicina, tip, cena";
     }
