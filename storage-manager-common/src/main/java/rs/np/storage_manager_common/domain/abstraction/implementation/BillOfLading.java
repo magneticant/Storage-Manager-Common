@@ -24,6 +24,10 @@ import java.util.List;
  */
 public class BillOfLading extends AbstractDocument implements DomainClass, Serializable {
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = -3940904224577410882L;
+	/**
      * privatni atribut, kupac {@link Buyer}
      */
 	private Buyer buyer;

@@ -6,7 +6,6 @@ import rs.np.storage_manager_common.domain.abstraction.Buyer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 /**
@@ -15,6 +14,10 @@ import java.util.Objects;
  * @since 1.0.0
  */
 public class NaturalPerson extends Buyer {
+	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = -992676865909510193L;
 	/**
 	 * privatni atribut kupac tipa {@link Buyer}. Ovaj atribut postoji zbog toga sto se referenca
 	 * na kupca cuva u klasama koje predstavaljaju specijalizaciju od kupca.
@@ -182,7 +185,7 @@ public class NaturalPerson extends Buyer {
 
     @Override
     public DomainClass selectObject(ResultSet rs) throws SQLException {
-    SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+//    SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
         Buyer buyer = new Buyer();
         buyer.setID(rs.getInt("IDKupca"));
         return new NaturalPerson(

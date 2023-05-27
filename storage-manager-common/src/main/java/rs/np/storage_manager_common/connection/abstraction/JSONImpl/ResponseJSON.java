@@ -14,6 +14,7 @@ import com.google.gson.annotations.SerializedName;
 import rs.np.storage_manager_common.connection.abstraction.Response;
 
 public class ResponseJSON implements Response, Serializable{
+	private static final long serialVersionUID = -8492419643639518973L;
 	private String response;
 	@SerializedName(value = "exception_content")
 	private String exMessage;

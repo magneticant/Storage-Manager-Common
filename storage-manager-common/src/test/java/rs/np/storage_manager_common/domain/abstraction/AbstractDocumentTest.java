@@ -9,8 +9,6 @@ import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.util.Date;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -171,17 +169,17 @@ public abstract class AbstractDocumentTest {
 	}
 	
 	@Test
-	void equalsTestSameObj() {
+	protected void equalsTestSameObj() {
 		assertTrue(document.equals(document));
 	}
 	
 	@Test
-	void equalsTestNullObj() {
+	protected void equalsTestNullObj() {
 		assertFalse(document.equals(null));
 	}
 	
 	@Test
-	void equalsTestDifferentClass() {
+	protected void equalsTestDifferentClass() {
 		assertFalse(document.equals(new Gson()));
 	}
 	

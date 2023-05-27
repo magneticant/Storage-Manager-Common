@@ -15,7 +15,11 @@ import java.sql.SQLException;
  * @since 1.0.0
  */
 public class BillOfLadingItem extends AbstractDocumentItem implements DomainClass{
-	 /**
+    /**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = -1825234562865597197L;
+	/**
      * privatni atribut, kupac {@link Buyer}
      */
     private Buyer buyer;

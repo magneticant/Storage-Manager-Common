@@ -14,10 +14,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import com.google.gson.Gson;
 
-import rs.np.storage_manager_common.domain.User;
 import rs.np.storage_manager_common.domain.WhereClauseMode;
 import rs.np.storage_manager_common.domain.abstraction.Buyer;
-import rs.np.storage_manager_common.domain.abstraction.BuyerTest;
 
 class NaturalPersonTest{
 	private NaturalPerson naturalPerson;

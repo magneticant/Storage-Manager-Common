@@ -10,8 +10,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.google.gson.Gson;
-
 import rs.np.storage_manager_common.domain.Firm;
 import rs.np.storage_manager_common.domain.Partner;
 import rs.np.storage_manager_common.domain.Product;
@@ -65,21 +63,21 @@ class GoodsReceivedNoteTest extends AbstractDocumentTest{
 		assertEquals(i1,
 				document.getItems().get(document.getItems().size()-1));
 	}
-	
-	@Test
-	void equalsTestSameObj() {
-		assertTrue(document.equals(document));
-	}
-	
-	@Test
-	void equalsTestNullObj() {
-		assertFalse(document.equals(null));
-	}
-	
-	@Test
-	void equalsTestDifferentClass() {
-		assertFalse(document.equals(new Gson()));
-	}
+//	
+//	@Test
+//	void equalsTestSameObj() {
+//		assertTrue(document.equals(document));
+//	}
+//	
+//	@Test
+//	void equalsTestNullObj() {
+//		assertFalse(document.equals(null));
+//	}
+//	
+//	@Test
+//	void equalsTestDifferentClass() {
+//		assertFalse(document.equals(new Gson()));
+//	}
 	
 	@Test
 	void toStringTest() {

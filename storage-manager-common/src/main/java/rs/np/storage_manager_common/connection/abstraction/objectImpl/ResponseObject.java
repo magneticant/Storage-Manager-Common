@@ -13,7 +13,8 @@ import rs.np.storage_manager_common.connection.abstraction.Response;
  * @author Milan
  */
 public class ResponseObject implements Response, Serializable{
-    private Object response;
+	private static final long serialVersionUID = -6083103420641204849L;
+	private Object response;
 //    private Exception ex;
     @SerializedName(value = "exception_content")
     private String exMessage;

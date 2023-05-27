@@ -17,6 +17,10 @@ import java.util.Objects;
  */
 public abstract class AbstractDocument implements Serializable, DomainClass {
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = 111727478086246948L;
+	/**
 	 * protected atribut ID klase {@link AbstractDocument}, kao tip {@link Integer}
 	 */
 	protected Integer ID;

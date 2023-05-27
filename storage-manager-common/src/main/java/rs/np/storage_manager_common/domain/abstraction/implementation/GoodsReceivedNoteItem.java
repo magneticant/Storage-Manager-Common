@@ -15,6 +15,10 @@ import java.sql.SQLException;
  */
 public class GoodsReceivedNoteItem extends AbstractDocumentItem implements DomainClass{
     /**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = 4144093665914805391L;
+	/**
      * privatni atribut, poslovni partner u saradnji {@link Partner}
      */
 	private Partner partner;

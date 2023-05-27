@@ -14,6 +14,10 @@ import java.util.Objects;
  */
 public class Partner implements DomainClass, SecondParticipant {
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = -4314350763911361659L;
+	/**
 	 * privatni atribut ID klase {@link Partner}, kao tip {@link Integer}
 	 */
     private Integer ID;

@@ -13,7 +13,6 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Klasa koja opisuje stanje i ponasanje prijemnice (eng. goods received note). 
@@ -22,6 +21,10 @@ import java.util.Objects;
  * @since 1.0.0
  */
 public class GoodsReceivedNote extends AbstractDocument implements DomainClass {
+	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = 2800207678877295094L;
 	/**
      * privatni atribut, poslovni partner u saradnji {@link Partner}
      */

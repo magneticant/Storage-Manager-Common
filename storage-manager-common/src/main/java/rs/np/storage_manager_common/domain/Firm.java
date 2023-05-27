@@ -13,6 +13,10 @@ import java.util.Objects;
  */
 public class Firm implements DomainClass{
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = 7621790110296491349L;
+	/**
 	 * privatni atribut ID klase {@link Firm}, kao tip {@link Integer}
 	 */
     private Integer ID;

@@ -18,6 +18,10 @@ import java.util.Objects;
  */
 public class Buyer implements DomainClass, Serializable, SecondParticipant {
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = -6037762367668771544L;
+	/**
 	 * protected (zasticeni) atribut jedinstvenog identifikatora kupca kao {@link Integer}
 	 */
     protected Integer ID;

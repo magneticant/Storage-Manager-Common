@@ -3,22 +3,15 @@ package rs.np.storage_manager_common.domain.abstraction;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import com.google.gson.Gson;
 
-import rs.np.storage_manager_common.domain.DomainClass;
 import rs.np.storage_manager_common.domain.Firm;
 import rs.np.storage_manager_common.domain.Product;
 import rs.np.storage_manager_common.domain.ProductType;
-import rs.np.storage_manager_common.domain.WhereClauseMode;
 
 public abstract class AbstractDocumentItemTest {
 	protected AbstractDocumentItem item;
@@ -98,17 +91,17 @@ public abstract class AbstractDocumentItemTest {
 	}
 	
 	@Test
-	void equalsTestSameObj() {
+	protected void equalsTestSameObj() {
 		assertTrue(item.equals(item));
 	}
 	
 	@Test
-	void equalsTestNullObj() {
+	protected void equalsTestNullObj() {
 		assertFalse(item.equals(null));
 	}
 	
 	@Test
-	void equalsTestDifferentClass() {
+	protected void equalsTestDifferentClass() {
 		assertFalse(item.equals(new Gson()));
 	}
 	

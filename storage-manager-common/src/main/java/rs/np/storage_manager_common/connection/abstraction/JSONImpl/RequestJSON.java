@@ -9,6 +9,7 @@ import rs.np.storage_manager_common.connection.abstraction.Request;
 
 
 public class RequestJSON implements Request, Serializable{
+	private static final long serialVersionUID = 6025115598869993316L;
 	private String obj;
 	private Operation operation;
 	

@@ -6,10 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import rs.np.storage_manager_common.domain.Partner;
 import rs.np.storage_manager_common.domain.Product;
 import rs.np.storage_manager_common.domain.WhereClauseMode;
-import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItem;
 import rs.np.storage_manager_common.domain.abstraction.AbstractDocumentItemTest;
 import rs.np.storage_manager_common.domain.abstraction.Buyer;
 

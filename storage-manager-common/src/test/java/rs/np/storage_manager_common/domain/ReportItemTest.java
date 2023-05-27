@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import com.google.gson.Gson;
 
-import rs.np.storage_manager_common.domain.utility.DateParser;
 
 class ReportItemTest extends DomainClassTest{
 	private DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

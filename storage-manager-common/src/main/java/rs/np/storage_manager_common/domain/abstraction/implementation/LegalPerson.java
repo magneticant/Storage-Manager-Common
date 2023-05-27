@@ -19,6 +19,10 @@ import java.util.Objects;
  */
 public class LegalPerson extends Buyer {
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = 5448315009205928487L;
+	/**
 	 * privatni atribut kupac tipa {@link Buyer}. Ovaj atribut postoji zbog toga sto se referenca
 	 * na kupca cuva u klasama koje predstavaljaju specijalizaciju od kupca.
 	 */

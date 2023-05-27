@@ -14,6 +14,10 @@ import java.util.Objects;
  */
 public class Product implements DomainClass {
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = 8938470061549198613L;
+	/**
 	 * privatni atribut ID klase {@link Product}, kao tip {@link Integer}
 	 */
     private Integer ID;

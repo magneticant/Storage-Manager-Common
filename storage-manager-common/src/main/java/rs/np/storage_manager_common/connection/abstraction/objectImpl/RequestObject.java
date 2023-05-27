@@ -11,7 +11,8 @@ import rs.np.storage_manager_common.connection.abstraction.Request;
  * @author Milan
  */
 public class RequestObject implements Request, Serializable{
-    private Object obj;
+	private static final long serialVersionUID = 2670912919957318134L;
+	private Object obj;
     private Operation operation;
     public RequestObject() {
     }

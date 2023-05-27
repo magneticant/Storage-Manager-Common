@@ -2,7 +2,6 @@ package rs.np.storage_manager_common.domain.abstraction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import javax.swing.JOptionPane;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import com.google.gson.Gson;
 
-import rs.np.storage_manager_common.domain.Firm;
 import rs.np.storage_manager_common.domain.WhereClauseMode;
 
 public class BuyerTest {

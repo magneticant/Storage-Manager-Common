@@ -20,6 +20,10 @@ import java.util.Objects;
  */
 public class Report implements DomainClass{
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = 3026351506796093187L;
+	/**
 	 * privatni atribut ID klase {@link Product}, kao tip {@link Integer}
 	 */
     private Date reportDate;

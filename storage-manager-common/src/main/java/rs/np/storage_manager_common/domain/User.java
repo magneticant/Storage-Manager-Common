@@ -13,6 +13,10 @@ import java.util.Objects;
  */
 public class User implements DomainClass{
 	/**
+	 * privatni staticki atribut, serijski broj generisan na zahtev Serializable interfejsa.
+	 */
+	private static final long serialVersionUID = 4039282105834565815L;
+	/**
 	 * privatni atribut ID, koji predstavlja jedinstveni identifikator svakog korisnika sistema
 	 */
     private Integer ID;
