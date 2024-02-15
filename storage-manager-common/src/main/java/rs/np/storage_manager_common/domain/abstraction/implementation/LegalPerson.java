@@ -170,7 +170,7 @@ public class LegalPerson extends Buyer {
 
     @Override
     public String getTableName() {
-        return "pravnoLice";
+        return "pravnolice";
     }
 
     @Override

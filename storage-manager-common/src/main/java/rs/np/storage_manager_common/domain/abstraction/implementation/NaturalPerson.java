@@ -151,7 +151,7 @@ public class NaturalPerson extends Buyer {
     
     @Override
     public String getTableName() {
-        return "fizickoLice";
+        return "fizickolice";
     }
 
     @Override
